@@ -8,6 +8,8 @@ use Livewire\WithPagination;
 
 class UserList extends Component
 {
+    public $perPage = 10;
+    protected $listeners = ['UserStore' => 'render'];
     public $search = '';
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -15,7 +17,7 @@ class UserList extends Component
     public function render()
     {
         return view('livewire.user-list',[
-            'users' => User::orderBy('id','desc')->where('name','like','%'.$this->search.'%')->paginate(10)
+            'users' => User::orderBy('id','desc')->where('name','like','%'.$this->search.'%')->paginate($this->perPage)
         ]);
     }
 

@@ -19,4 +19,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+Route::middleware(['auth'])->group(function (){
+    
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    Route::get('/user-management', function () {
+        return view('user-management');
+    });
+});
+
+

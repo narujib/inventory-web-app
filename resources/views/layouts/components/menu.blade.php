@@ -62,8 +62,8 @@
 
         <ul class="menu-inner py-1">
         <!-- Dashboards -->
-        <li class="menu-item active">
-            <a href="icons-boxicons.html" class="menu-link">
+        <li class="menu-item {{ Request::is('dashboard') ? 'active' : '' }}">
+            <a href="{{ url('dashboard') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
             <div data-i18n="Dashboards">Dashboards</div>
             </a>
@@ -73,51 +73,18 @@
             <span class="menu-header-text">Apps &amp; Pages</span>
         </li>
         <!-- Apps -->
-        <li class="menu-item">
+        <li class="menu-item {{ Request::is('user-management') ? 'active' : '' }}">
             <a
-            href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-email.html"
-            target="_blank"
-            class="menu-link">
-            <i class="menu-icon tf-icons bx bx-envelope"></i>
-            <div data-i18n="Email">Email</div>
-            <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
+            href="{{ url('user-management') }}"
+            class="menu-link ">
+            <i class="menu-icon tf-icons bx bx-user"></i>
+            <div data-i18n="User-Management">User Management</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a
-            href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-chat.html"
-            target="_blank"
-            class="menu-link">
-            <i class="menu-icon tf-icons bx bx-chat"></i>
-            <div data-i18n="Chat">Chat</div>
-            <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a
-            href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-calendar.html"
-            target="_blank"
-            class="menu-link">
-            <i class="menu-icon tf-icons bx bx-calendar"></i>
-            <div data-i18n="Calendar">Calendar</div>
-            <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a
-            href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-kanban.html"
-            target="_blank"
-            class="menu-link">
-            <i class="menu-icon tf-icons bx bx-grid"></i>
-            <div data-i18n="Kanban">Kanban</div>
-            <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-            </a>
-        </li>
-        <!-- Pages -->
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-dock-top"></i>
-            <div data-i18n="Account Settings">Account Settings</div>
+            <i class="menu-icon tf-icons bx bx-folder-open"></i>
+            <div data-i18n="Inventory">Inventory</div>
             </a>
             <ul class="menu-sub">
             <li class="menu-item">
@@ -138,46 +105,24 @@
             </ul>
         </li>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-            <div data-i18n="Authentications">Authentications</div>
+            <a
+            href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-email.html"
+            target="_blank"
+            class="menu-link">
+            <i class="menu-icon tf-icons bx bx-user-voice"></i>
+            <div data-i18n="Suplier">Suplier</div>
             </a>
-            <ul class="menu-sub">
-            <li class="menu-item">
-                <a href="auth-login-basic.html" class="menu-link" target="_blank">
-                <div data-i18n="Basic">Login</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="auth-register-basic.html" class="menu-link" target="_blank">
-                <div data-i18n="Basic">Register</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
-                <div data-i18n="Basic">Forgot Password</div>
-                </a>
-            </li>
-            </ul>
         </li>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-            <div data-i18n="Misc">Misc</div>
+            <a
+            href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-email.html"
+            target="_blank"
+            class="menu-link">
+            <i class="menu-icon tf-icons bx bx-transfer"></i>
+            <div data-i18n="Transaction">Transaction</div>
             </a>
-            <ul class="menu-sub">
-            <li class="menu-item">
-                <a href="pages-misc-error.html" class="menu-link">
-                <div data-i18n="Error">Error</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="pages-misc-under-maintenance.html" class="menu-link">
-                <div data-i18n="Under Maintenance">Under Maintenance</div>
-                </a>
-            </li>
-            </ul>
         </li>
+
         <!-- Components -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
         <!-- Cards -->
@@ -319,93 +264,5 @@
             </a>
         </li>
 
-        <!-- Forms & Tables -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span></li>
-        <!-- Forms -->
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-detail"></i>
-            <div data-i18n="Form Elements">Form Elements</div>
-            </a>
-            <ul class="menu-sub">
-            <li class="menu-item">
-                <a href="forms-basic-inputs.html" class="menu-link">
-                <div data-i18n="Basic Inputs">Basic Inputs</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="forms-input-groups.html" class="menu-link">
-                <div data-i18n="Input groups">Input groups</div>
-                </a>
-            </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-detail"></i>
-            <div data-i18n="Form Layouts">Form Layouts</div>
-            </a>
-            <ul class="menu-sub">
-            <li class="menu-item">
-                <a href="form-layouts-vertical.html" class="menu-link">
-                <div data-i18n="Vertical Form">Vertical Form</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="form-layouts-horizontal.html" class="menu-link">
-                <div data-i18n="Horizontal Form">Horizontal Form</div>
-                </a>
-            </li>
-            </ul>
-        </li>
-        <!-- Form Validation -->
-        <li class="menu-item">
-            <a
-            href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/form-validation.html"
-            target="_blank"
-            class="menu-link">
-            <i class="menu-icon tf-icons bx bx-list-check"></i>
-            <div data-i18n="Form Validation">Form Validation</div>
-            <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-            </a>
-        </li>
-        <!-- Tables -->
-        <li class="menu-item">
-            <a href="tables-basic.html" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-table"></i>
-            <div data-i18n="Tables">Tables</div>
-            </a>
-        </li>
-        <!-- Data Tables -->
-        <li class="menu-item">
-            <a
-            href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/tables-datatables-basic.html"
-            target="_blank"
-            class="menu-link">
-            <i class="menu-icon tf-icons bx bx-grid"></i>
-            <div data-i18n="Datatables">Datatables</div>
-            <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-            </a>
-        </li>
-        <!-- Misc -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
-        <li class="menu-item">
-            <a
-            href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-            target="_blank"
-            class="menu-link">
-            <i class="menu-icon tf-icons bx bx-support"></i>
-            <div data-i18n="Support">Support</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a
-            href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
-            target="_blank"
-            class="menu-link">
-            <i class="menu-icon tf-icons bx bx-file"></i>
-            <div data-i18n="Documentation">Documentation</div>
-            </a>
-        </li>
     </ul>
 </aside>

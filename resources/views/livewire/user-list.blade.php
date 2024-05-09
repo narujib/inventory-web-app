@@ -1,6 +1,15 @@
 <div class="col-lg-12 order-2 mb-4">
     <div class="card">
-        <h5 class="card-header">User List</h5>
+        <div class="card-header d-flex align-items-center justify-content-between">
+            <h5 class="mb-0">User List</h5>
+            <small class="text-muted float-end">
+                <select wire:model.live="perPage" class="form-select">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                </select>
+            </small>
+        </div>     
         
         <div class="input-group input-group-merge px-4 mb-3">
             <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
@@ -10,7 +19,10 @@
         <div class="table-responsive text-nowrap">
             <table class="table table-hover">
                 <caption class="ms-4">
-                Page {{ $users->links() }}
+                    <div class="d-flex align-items-center justify-content-center">
+                        
+                        <small>{{ $users->links() }}</small>
+                    </div>
                 </caption>
                 <thead>
                     <tr>

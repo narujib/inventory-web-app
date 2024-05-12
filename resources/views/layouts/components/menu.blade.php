@@ -78,23 +78,23 @@
             href="{{ url('user-management') }}"
             class="menu-link ">
             <i class="menu-icon tf-icons bx bx-user"></i>
-            <div data-i18n="User-Management">User Management</div>
+            <div data-i18n="User-Management">Manajemen Pengguna</div>
             </a>
         </li>
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-folder-open"></i>
-            <div data-i18n="Inventory">Inventory</div>
+            <div data-i18n="Inventory">Manajemen Barang</div>
             </a>
             <ul class="menu-sub">
             <li class="menu-item">
                 <a href="pages-account-settings-account.html" class="menu-link">
-                <div data-i18n="Account">Account</div>
+                <div data-i18n="Account">Inventaris</div>
                 </a>
             </li>
             <li class="menu-item">
                 <a href="pages-account-settings-notifications.html" class="menu-link">
-                <div data-i18n="Notifications">Notifications</div>
+                <div data-i18n="Notifications">Permintaan</div>
                 </a>
             </li>
             <li class="menu-item">
@@ -104,10 +104,9 @@
             </li>
             </ul>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ Request::is('suplier') ? 'active' : '' }}">
             <a
-            href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-email.html"
-            target="_blank"
+            href="{{ url('suplier') }}"
             class="menu-link">
             <i class="menu-icon tf-icons bx bx-user-voice"></i>
             <div data-i18n="Suplier">Suplier</div>

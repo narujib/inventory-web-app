@@ -1,7 +1,7 @@
 <div class="col-xl-8">
     <div class="card mb-3">
         <div class="card-header d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">User List</h5>
+            <h5 class="mb-0">Suplier List</h5>
 
             <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center">
@@ -25,26 +25,26 @@
                 <caption class="ms-4">
                     <div class="d-flex align-items-center justify-content-center">
                         
-                        <small>{{ $users->links() }}</small>
+                        <small>{{ $supliers->links() }}</small>
                     </div>
                 </caption>
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Action</th>
+                        <th>Telepon</th>
+                        <th>Alamat</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @foreach ($users as $index => $user)                        
+                    @foreach ($supliers as $index => $suplier)                        
                         <tr>
-                            <td>{{ $users->firstItem() + $index }}</td>
+                            <td>{{ $supliers->firstItem() + $index }}</td>
                             <td>
                                 <i class="bx bxl-angular bx-sm text-danger me-3"></i>
-                                <span class="fw-medium">{{ $user->name }}</span>
+                                <span class="fw-medium">{{ $suplier->name }}</span>
                             </td>
-                            <td>{{ $user->email }}</td>
+                            <td>{{ $suplier->telepon }}</td>
                             <td>
                                 <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

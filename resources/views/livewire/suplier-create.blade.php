@@ -1,10 +1,10 @@
 <div class="col-xl">
     <div class="card mb-3">
-        <h5 class="card-header">Add User</h5>
+        <h5 class="card-header">Tambah data Suplier</h5>
 
         @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible mx-4" role="alert">
-                User berhasil ditambahkan!
+                Suplier berhasil ditambahkan!
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
@@ -33,28 +33,25 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="password">Password</label>
-                    <input wire:model="password" type="password" name="password"  class="form-control @error('password') is-invalid @enderror" id="password"  placeholder="password">
+                    <label class="form-label" for="basic-default-phone">Telepon</label>
+                    <input wire:model="telepon" type="text" id="telepon" name="telepon" class="form-control phone-mask  @error('telepon') is-invalid @enderror" placeholder="Telepon">
 
-                    @error('password')
+                    @error('telepon')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
-
-                    {{-- <div class="col-sm-6">
-                        <div class="mb-1">
-                            <label class="form-label" for="password-confirm">Confirm Password</label>
-                            <input type="password" class="form-control" id="password-confirm" placeholder="Confirm password">
-                        </div>
-                    </div> --}}
-
-                <div class="row justify-content-end">
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary float-end">Tambahkan</button>
-                    </div>
+                <div class="mb-3">
+                <label class="form-label" for="basic-default-message">Alamat</label>
+                <textarea wire:model="alamat" id="alamat" name="alamat" class="form-control  @error('alamat') is-invalid @enderror" placeholder="Alamat"></textarea>
+                @error('alamat')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
                 </div>
+                <button type="submit" class="float-end btn btn-primary">Tambahkan</button>
             </form>
         </div>
     </div>

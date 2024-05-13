@@ -33,6 +33,7 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Jabatan</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -46,14 +47,20 @@
                             </td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                                </div>
+                                @if ( $user->position_id == '1' )
+                                    <span class="badge bg-primary">{{ $user->position->name }}</span>
+                                @else
+                                    <span class="badge bg-secondary">{{ $user->position->name }}</span>
+                                @endif
+                            </td>
+                            <td>
+                                <div class="mt-0">
+                                    <button wire:click="getUser({{ $user->id }})" class="btn btn-sm btn-icon btn-warning me-2">
+                                        <i class='bx bxs-edit'></i>
+                                    </button>
+                                    <button type="reset" class="btn btn-sm btn-icon btn-danger">
+                                        <i class='bx bx-trash' ></i>
+                                    </button>
                                 </div>
                             </td>
                         </tr>

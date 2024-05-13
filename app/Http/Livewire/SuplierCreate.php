@@ -23,8 +23,8 @@ class SuplierCreate extends Component
         $this->validate([
             'name' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'telepon' => 'required|string|max:255',
-            'email' => 'string|email|max:255|unique:supliers'
+            'telepon' => 'required|string|max:255|unique:supliers,telepon',
+            'email' => 'string|email|max:255|unique:supliers,email'
         ]);
 
         Suplier::Create([

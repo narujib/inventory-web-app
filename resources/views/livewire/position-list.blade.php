@@ -1,7 +1,7 @@
 <div class="col-xl-8">
     <div class="card mb-3">
         <div class="card-header d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">Suplier List</h5>
+            <h5 class="mb-0">Posisi List</h5>
 
             <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center">
@@ -25,7 +25,7 @@
                 <caption class="ms-4">
                     <div class="d-flex align-items-center justify-content-center">
                         
-                        <small>{{ $supliers->links() }}</small>
+                        <small>{{ $positions->links() }}</small>
                     </div>
                 </caption>
                 <thead>
@@ -33,21 +33,19 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Telepon</th>
-                        <th>Alamat</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @foreach ($supliers as $index => $suplier)                        
+                    @foreach ($positions as $index => $position)                        
                         <tr>
-                            <td>{{ $supliers->firstItem() + $index }}</td>
+                            <td>{{ $positions->firstItem() + $index }}</td>
                             <td>
                                 <i class="bx bxl-angular bx-sm text-danger me-3"></i>
-                                <span class="fw-medium">{{ $suplier->name }}</span>
+                                <span class="fw-medium">{{ $position->name }}</span>
                             </td>
-                            <td>{{ $suplier->telepon }}</td>
                             <td>
                                 <div class="mt-0">
-                                    <button wire:click="getSuplier({{ $suplier->id }})" class="btn btn-sm btn-icon btn-warning me-2">
+                                    <button  wire:click="getPosition({{ $position->id }})"  class="btn btn-sm btn-icon btn-warning me-2">
                                         <i class='bx bxs-edit'></i>
                                     </button>
                                     <button type="reset" class="btn btn-sm btn-icon btn-danger">

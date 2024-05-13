@@ -1,17 +1,18 @@
 <div class="col-xl">
     <div class="card mb-3">
-        <h5 class="card-header">Add User</h5>
+        <h5 class="card-header">Edit User</h5>
 
         @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible mx-4" role="alert">
-                User berhasil ditambahkan!
+                User berhasil diedit!
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
 
         <div class="card-body">
-            <form wire:submit.prevent="store">
+            <form wire:submit.prevent="update">
                 @csrf
+                <input type="hidden" name="" wire:model="userId">
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-fullname">Nama</label>
                     <input wire:model="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama">
@@ -56,7 +57,7 @@
                     <select wire:model="position_id" name="position_id" id="position_id" class="form-select @error('position_id') is-invalid @enderror">
                         <option>--Pilih jabatan--</option>
                         @foreach ($positions as $position)
-                            <option value="{{ $position->id }}">{{ $position->name }}</option>
+                            <option value="{{ $position->id }}">{{ $position->id }}</option>
                         @endforeach
                     </select>
 

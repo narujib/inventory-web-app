@@ -73,14 +73,34 @@
             <span class="menu-header-text">Apps &amp; Pages</span>
         </li>
         <!-- Apps -->
-        <li class="menu-item {{ Request::is('user-management') ? 'active' : '' }}">
+        {{-- <li class="menu-item {{ Request::is('user-management') ? 'active' : '' }}">
             <a
             href="{{ url('user-management') }}"
             class="menu-link ">
             <i class="menu-icon tf-icons bx bx-user"></i>
             <div data-i18n="User-Management">Manajemen Pengguna</div>
             </a>
+        </li> --}}
+
+        <li class="menu-item {{ Request::is('user-management', 'position') ? 'active open' : '' }}">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div data-i18n="Account Settings">Pengguna</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item {{ Request::is('user-management') ? 'active' : '' }}">
+                <a href="{{ url('user-management') }}" class="menu-link">
+                    <div data-i18n="Account">Pengguna</div>
+                </a>
+                </li>
+                <li class="menu-item {{ Request::is('position') ? 'active' : '' }}">
+                <a href="{{ url('position') }}" class="menu-link">
+                    <div data-i18n="Notifications">Jabatan</div>
+                </a>
+                </li>
+            </ul>
         </li>
+
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-folder-open"></i>

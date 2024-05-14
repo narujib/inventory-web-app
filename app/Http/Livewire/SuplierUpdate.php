@@ -52,9 +52,19 @@ class SuplierUpdate extends Component
             $this->telepon = NULL;
             $this->alamat = NULL;
 
-            session()->flash('success', 'Berhasil mengedit suplier');
+            $this->emit('suplierUpdateStatusFalse');
+            $this->dispatchBrowserEvent('success', ['message'=>'Suplier berhasil diubah !']);
 
         }
         $this->emit('SuplierUpdated');
+    }
+
+    public function cancel(){
+        $this->name = NULL;
+        $this->email = NULL;
+        $this->telepon = NULL;
+        $this->alamat = NULL;
+        
+        $this->emit('suplierUpdateStatusFalse');
     }
 }

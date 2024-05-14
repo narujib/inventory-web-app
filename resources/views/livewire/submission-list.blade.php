@@ -1,7 +1,7 @@
 <div class="col-xl">
     <div class="card mb-3">
         <div class="card-header d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">Posisi List</h5>
+            <h5 class="mb-0">Pengajuan</h5>
 
             <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center">
@@ -17,7 +17,7 @@
         
         <div class="input-group input-group-merge px-4 mb-3">
             <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-            <input type="text" class="form-control" wire:model="search" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" />
+            <input type="text" class="form-control" wire:model.defer="search" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" />
         </div>
 
         <div class="table-responsive text-nowrap">
@@ -37,7 +37,7 @@
                         <th>User</th>
                         <th>Keterangan</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -52,7 +52,11 @@
                                 <span class="fw-medium">{{ $submission->jumlah }}</span>
                             </td>
                             <td>
-                                <span class="fw-medium">{{ $submission->jenis }}</span>
+                                @if ( $submission->jenis == '1' )
+                                    <span class="badge rounded-pill bg-label-primary">Prasarana</span>
+                                @else
+                                    <span class="badge rounded-pill bg-label-secondary">Sarana</span>                                
+                                @endif
                             </td>
                             <td>
                                 <span class="fw-medium">{{ $submission->user->name }}</span>
@@ -60,8 +64,16 @@
                             <td>
                                 <span class="fw-medium">{{ $submission->keterangan }}</span>
                             </td>
-                            <td>
-                                <span class="fw-medium">{{ $submission->status }}</span>
+                            <td>                                
+                                @if ( $submission->status == '0' )
+                                    <span class="badge bg-warning">menunggu</span>
+                                @elseif ( $submission->status == '1' ) 
+                                    <span class="badge bg-info">diterima</span>
+                                @elseif ( $submission->status == '2' ) 
+                                    <span class="badge bg-danger">ditolak</span>
+                                @else
+                                    <span class="badge bg-success">selesai</span>                                          
+                                @endif
                             </td>
                             <td>
                                 <div class="mt-0">

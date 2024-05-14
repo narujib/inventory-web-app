@@ -37,8 +37,16 @@ class PositionUpdate extends Component
 
             $this->name = NULL;
 
-            session()->flash('success', 'Posisi berhasil diedit');
+            // session()->flash('success', 'Posisi berhasil diedit');
+            $this->emit('positionUpdateStatusFalse');
+            $this->dispatchBrowserEvent('success', ['message'=>'Jabatan berhasil diubah !']);
         }
         $this->emit('PositionUpdated');
+    }
+
+    public function cancel(){
+        $this->name = NULL;
+        
+        $this->emit('positionUpdateStatusFalse');
     }
 }

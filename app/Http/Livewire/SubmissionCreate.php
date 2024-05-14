@@ -47,7 +47,8 @@ class SubmissionCreate extends Component
         $this->jenis = NULL;
         $this->status = NULL;
 
-        session()->flash('success', 'Berhasil mengajukan barang !');
+        // session()->flash('success', 'Berhasil mengajukan barang !');
+        $this->dispatchBrowserEvent('success', ['message'=>'Pengajuan berhasil ditambahkan !']);
 
         $this->emit('SubmissionStore');
     }

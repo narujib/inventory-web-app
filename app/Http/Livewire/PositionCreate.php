@@ -25,7 +25,7 @@ class PositionCreate extends Component
 
         $this->name = NULL;
 
-        session()->flash('success', 'Berhasil menambahkan posisi');
+        $this->dispatchBrowserEvent('success', ['message'=>'Jabatan berhasil ditambahkan !']);
 
         $this->emit('PositionStore');
     }

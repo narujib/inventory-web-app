@@ -41,7 +41,8 @@ class UserCreate extends Component
         $this->position_id = NULL;
         $this->password = NULL;
 
-        session()->flash('success', 'User berhasil dibuat');
+        // session()->flash('success', 'User berhasil dibuat');
+        $this->dispatchBrowserEvent('success', ['message'=>'Pengguna berhasil ditambahkan !']);
 
         $this->emit('UserStore');
     }

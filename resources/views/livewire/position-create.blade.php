@@ -1,20 +1,13 @@
 <div class="col-xl">
     <div class="card mb-3">
-        <h5 class="card-header">Tambah position</h5>
-
-        @if (session()->has('success'))
-            <div class="alert alert-success alert-dismissible mx-4" role="alert">
-                Posisi berhasil ditambahkan!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+        <h5 class="card-header">Tambahkan jabatan</h5>
 
         <div class="card-body">
             <form wire:submit.prevent="store">
                 @csrf
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-fullname">Nama</label>
-                    <input wire:model="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama">
+                    <input wire:model.defer="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama">
 
                     @error('name')
                         <span class="invalid-feedback" role="alert">

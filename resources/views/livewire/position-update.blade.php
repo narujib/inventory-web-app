@@ -1,21 +1,14 @@
 <div class="col-xl">
     <div class="card mb-3">
-        <h5 class="card-header">Update position</h5>
-
-        @if (session()->has('success'))
-            <div class="alert alert-success alert-dismissible mx-4" role="alert">
-                Posisi berhasil diupdate!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+        <h5 class="card-header">Ubah jabatan</h5>        
 
         <div class="card-body">
             <form wire:submit.prevent="update">
                 @csrf
-                <input type="hidden" name="" wire:model="positionId">
+                <input type="hidden" name="" wire:model.defer="positionId">
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-fullname">Nama</label>
-                    <input wire:model="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama">
+                    <input wire:model.defer="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama">
 
                     @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -23,8 +16,11 @@
                         </span>
                     @enderror
                 </div>
-                <button type="submit" class="float-end btn btn-primary">Tambahkan</button>
-            </form>
+                <div class="mt-0">
+                    <button type="submit" class="float-end btn btn-primary">Ubah</button>
+                    <button type="reset" wire:click="cancel()" class="me-2 float-end btn btn-secondary">Batal</button>
+                </div>
+                </form>
         </div>
     </div>
 </div>

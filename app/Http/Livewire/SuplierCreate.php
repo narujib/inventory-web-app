@@ -39,7 +39,8 @@ class SuplierCreate extends Component
         $this->telepon = NULL;
         $this->alamat = NULL;
 
-        session()->flash('success', 'Berhasil menambahkan suplier');
+        // session()->flash('success', 'Berhasil menambahkan suplier');
+        $this->dispatchBrowserEvent('success', ['message'=>'Suplier berhasil ditambahkan !']);
 
         $this->emit('SuplierStore');
     }

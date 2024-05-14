@@ -54,9 +54,19 @@ class UserUpdate extends Component
             $this->email = NULL;
             $this->position_id = NULL;
 
-            session()->flash('success', 'User berhasil diedit');
+            // session()->flash('success', 'User berhasil diedit');
+            $this->emit('userUpdateStatusFalse');
+            $this->dispatchBrowserEvent('success', ['message'=>'Pengguna berhasil diubah !']);
 
         }
         $this->emit('UserUpdated');
+    }
+
+    public function cancel(){
+        $this->name = NULL;
+        $this->email = NULL;
+        $this->position_id = NULL;
+        
+        $this->emit('userUpdateStatusFalse');
     }
 }

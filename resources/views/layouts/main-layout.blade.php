@@ -48,6 +48,10 @@ data-template="vertical-menu-template-free">
         <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
         <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
         <script src="{{ asset('sneat-bootstrap-free/js/config.js') }}"></script>
+
+        {{-- Toaster CDN --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+
         {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
         @livewireStyles
     </head>
@@ -112,8 +116,31 @@ data-template="vertical-menu-template-free">
         <script src="{{ asset('sneat-bootstrap-free/js/dashboards-analytics.js') }}"></script>
         <script src="{{ asset('sneat-bootstrap-free/js/form-basic-inputs.js') }}"></script>
 
+        {{-- Toaster CDN --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <!-- Place this tag in your head or just before your close body tag. -->
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
+        {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
+
+        <script>
+            $(document).ready(function(){
+                toastr.options = {
+                    "progressBar": true,
+                    "positionClass": "toast-top-right"
+                }
+            });
+
+            window.addEventListener('success', event =>{
+                toastr.success(event.detail.message);
+            });
+            window.addEventListener('warning', event =>{
+                toastr.warning(event.detail.message);
+            });
+            window.addEventListener('error', event =>{
+                toastr.error(event.detail.message);
+            });
+        </script>
+
+
         @livewireScripts
     </body>
 </html>

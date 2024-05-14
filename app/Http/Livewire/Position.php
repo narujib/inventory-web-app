@@ -10,6 +10,7 @@ class Position extends Component
     
     protected $listeners = [
         'positionUpdateStatus',
+        'positionUpdateStatusFalse',
         'getPosition' => 'data',
     ];
 
@@ -20,7 +21,12 @@ class Position extends Component
 
     public function positionUpdateStatus(){
         $this->positionUpdateStatus = true;
-    }   
+    }
+
+    public function positionUpdateStatusFalse(){
+        $this->positionUpdateStatus = false;
+    }
+
     public function data($position){
         $this->emit('dataPosition', $position);
     } 

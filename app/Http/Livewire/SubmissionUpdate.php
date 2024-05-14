@@ -65,9 +65,20 @@ class SubmissionUpdate extends Component
             // $this->user_id = NULL;
             // $this->status = NULL;
 
-            session()->flash('success', 'Pengajuan berhasil diedit');
+            // session()->flash('success', 'Pengajuan berhasil diedit');
+            $this->emit('submissionUpdateStatusFalse');
+            $this->dispatchBrowserEvent('success', ['message'=>'Pengajuan berhasil diubah !']);
 
         }
         $this->emit('SubmissionUpdated');
+    }
+
+    public function cancel(){
+        $this->name = NULL;
+        $this->jumlah = NULL;
+        $this->jenis = NULL;
+        $this->keterangan = NULL;
+
+        $this->emit('submissionUpdateStatusFalse');
     }
 }

@@ -9,6 +9,7 @@ class Suplier extends Component
     public $suplierUpdateStatus = false;
     protected $listeners = [
         'suplierUpdateStatus',
+        'suplierUpdateStatusFalse',
         'getSuplier' => 'data',
     ];
 
@@ -19,7 +20,12 @@ class Suplier extends Component
 
     public function suplierUpdateStatus(){
         $this->suplierUpdateStatus = true;
+    }
+
+    public function suplierUpdateStatusFalse(){
+        $this->suplierUpdateStatus = false;
     }   
+
     public function data($suplier){
         $this->emit('dataSuplier', $suplier);
     } 

@@ -8,6 +8,7 @@ use Livewire\WithPagination;
 
 class SubmissionList extends Component
 {
+    public $submissionId;
     public $submissionUpdateStatus = false;
     public $perPage = 10;
     protected $listeners = [
@@ -29,6 +30,10 @@ class SubmissionList extends Component
         $this->emit('submissionUpdateStatus');
         $submission = Submission::find($id);
         $this->emit('getSubmission', $submission);
+    }
+
+    public function cancel(){
+        $this->submissionId = NULL;
     }
 
     public function updatingSearch(){

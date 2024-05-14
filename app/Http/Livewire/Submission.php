@@ -10,6 +10,7 @@ class Submission extends Component
 
     protected $listeners = [
         'submissionUpdateStatus',
+        'submissionUpdateStatusFalse',
         'getSubmission' => 'data',
     ];
 
@@ -20,6 +21,10 @@ class Submission extends Component
 
     public function submissionUpdateStatus(){
         $this->submissionUpdateStatus = true;
+    }
+
+    public function submissionUpdateStatusFalse(){
+        $this->submissionUpdateStatus = false;
     }
 
     public function data($submission){

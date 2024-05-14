@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 
 class SuplierList extends Component
 {
+    public $suplierId;
     public $suplierUpdateStatus = false;
     public $perPage = 10;
     protected $listeners = [
@@ -26,10 +27,29 @@ class SuplierList extends Component
         ]);
     }
 
+    public function deleteConfirm($id){
+        $this->emit('suplierUpdateStatusFalse');
+        $this->suplierId = $id;
+    }
+
+    public function destroy(){
+        $suplier = Suplier::where('id', $this->suplierId)->first();
+        $suplier->delete();
+        $this->suplierId = NULL;
+
+        $this->dispatchBrowserEvent('success', ['message'=>'Suplier berhasil dihapus !']);
+
+        $this->emit('SuplierStore');
+    }
+
     public function getSuplier($id){
         $this->emit('suplierUpdateStatus');
         $suplier = Suplier::find($id);
         $this->emit('getSuplier', $suplier);
+    }
+
+    public function cancel(){
+        $this->suplierId = NULL;
     }
     
     public function updatingSearch(){

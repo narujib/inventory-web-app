@@ -16,7 +16,7 @@ class PositionCreate extends Component
 
     public function store(){
         $this->validate([
-            'name' => 'unique|required|string|max:255'
+            'name' => 'required|string|max:255|unique:positions,name'
         ]);
 
         Position::Create([

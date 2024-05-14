@@ -38,8 +38,8 @@ class UserUpdate extends Component
         $this->validate([
             'name' => 'required|string|max:255',
             'position_id' => 'required|integer',
+            // 'password' => 'required|string|min:8',
             'email' => 'required|string|email|max:255|unique:users,email,'.$this->userId
-            // 'password' => 'required|string|min:8'
         ]);
 
         if ($this->userId){

@@ -132,6 +132,14 @@
             <div data-i18n="Suplier">Suplier</div>
             </a>
         </li>
+        <li class="menu-item {{ Request::is('submission') ? 'active' : '' }}">
+            <a
+            href="{{ url('submission') }}"
+            class="menu-link">
+            <i class="menu-icon tf-icons bx bx-user-voice"></i>
+            <div data-i18n="Suplier">Pengajuan</div>
+            </a>
+        </li>
         <li class="menu-item">
             <a
             href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-email.html"

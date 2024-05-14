@@ -110,6 +110,7 @@ data-template="vertical-menu-template-free">
 
         <!-- Page JS -->
         <script src="{{ asset('sneat-bootstrap-free/js/dashboards-analytics.js') }}"></script>
+        <script src="{{ asset('sneat-bootstrap-free/js/form-basic-inputs.js') }}"></script>
 
         <!-- Place this tag in your head or just before your close body tag. -->
         <script async defer src="https://buttons.github.io/buttons.js"></script>

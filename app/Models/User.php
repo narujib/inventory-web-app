@@ -28,6 +28,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Position::class);
     }
+    
+    public function submission(){
+        return $this->hasMany(Submission::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

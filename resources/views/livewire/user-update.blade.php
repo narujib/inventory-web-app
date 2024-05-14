@@ -33,7 +33,7 @@
                         </span>
                     @enderror
                 </div>
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label class="form-label" for="password">Password</label>
                     <input wire:model="password" type="password" name="password"  class="form-control @error('password') is-invalid @enderror" id="password"  placeholder="password">
 
@@ -42,7 +42,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>
+                </div> --}}
 
                     {{-- <div class="col-sm-6">
                         <div class="mb-1">
@@ -57,7 +57,7 @@
                     <select wire:model="position_id" name="position_id" id="position_id" class="form-select @error('position_id') is-invalid @enderror">
                         <option>--Pilih jabatan--</option>
                         @foreach ($positions as $position)
-                            <option value="{{ $position->id }}">{{ $position->id }}</option>
+                            <option value="{{ $position->id }}">{{ $position->name }}</option>
                         @endforeach
                     </select>
 

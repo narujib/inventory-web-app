@@ -524,6 +524,7 @@
         <!--/ Transactions -->
 
         @livewire('user-list')
+        @livewire('user-list')
 
 
     </div>

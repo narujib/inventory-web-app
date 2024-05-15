@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_permintaan');
             $table->string('name');
             $table->integer('jumlah');
             $table->string('keterangan');
             $table->unsignedBigInteger('user_id');
             $table->integer('jenis')->comment('1=sarana,2=prasarana,3=lainnya');
-            $table->integer('status')->default('0')->comment('1=pending,2=prosess,3=finish');
+            $table->integer('status')->comment('1=pending,2=prosess,3=finish');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

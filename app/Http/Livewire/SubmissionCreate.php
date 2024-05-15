@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Submission;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -30,8 +31,11 @@ class SubmissionCreate extends Component
             'status' => 'nullable|integer'
         ]);
 
+        $uId = IdGenerator::generate(['table' => 'submissions', 'field' => 'kode_permintaan', 'length' => 5, 'prefix' => 'XR']);
+
         Submission::Create([
             'name' => $this->name,
+            'kode_permintaan' => $uId,
             'jumlah' => $this->jumlah,
             'keterangan' => $this->keterangan,
             // 'user_id' => ($this->auth()->id),

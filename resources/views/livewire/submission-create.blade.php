@@ -41,9 +41,9 @@
 
                         <select id="jenis" wire:model.defer="jenis" name="jenis" class="form-select @error('jenis') is-invalid @enderror">
                             <option>---Pilih jenis---</option>
-                            <option value="0">Sarana</option>
-                            <option value="1">Prasarana</option>
-                            <option value="2">Lainnya</option>
+                            <option value="1">Sarana</option>
+                            <option value="2">Prasarana</option>
+                            <option value="3">Lainnya</option>
                         </select>
                         {{-- <input  type="text" class="form-control  @error('jenis') is-invalid @enderror" id="jenis" name="jenis" placeholder="Jenis"> --}}
 

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('jumlah');
             $table->string('keterangan');
             $table->unsignedBigInteger('user_id');
-            $table->integer('jenis')->comment('0=sarana,1=prasarana');
-            $table->integer('status')->default('0')->comment('0=pending,1=acc,2=rejected,3=finished');
+            $table->integer('jenis')->comment('0=sarana,1=prasarana,2=lainnya');
+            $table->integer('status')->default('0')->comment('0=pending,1=prosess,3=finish');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

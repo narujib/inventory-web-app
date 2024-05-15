@@ -2,13 +2,6 @@
     <div class="card mb-3">
         <h5 class="card-header">Ubah data suplier</h5>
 
-        @if (session()->has('success'))
-            <div class="alert alert-success alert-dismissible mx-4" role="alert">
-                Suplier berhasil ditambahkan!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-
         <div class="card-body">
             <form wire:submit.prevent="update">
                 @csrf

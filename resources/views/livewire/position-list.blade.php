@@ -47,9 +47,9 @@
                                     <button  wire:click="getPosition({{ $position->id }})"  class="btn btn-sm btn-icon btn-warning me-2">
                                         <i class='bx bxs-edit'></i>
                                     </button>
-                                    {{-- <button wire:click="deleteConfirm({{ $position->id }})" type="button" class="btn btn-sm btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
+                                    <button wire:click="deleteConfirm({{ $position->id }})" type="button" class="btn btn-sm btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
                                         <i class='bx bx-trash' ></i>
-                                    </button> --}}
+                                    </button>
 
                                 </div>
                             </td>

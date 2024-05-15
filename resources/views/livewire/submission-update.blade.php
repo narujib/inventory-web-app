@@ -44,6 +44,7 @@
                             <option>---Pilih jenis---</option>
                             <option value="0">Sarana</option>
                             <option value="1">Prasarana</option>
+                            <option value="2">Lainnya</option>
                         </select>
                         {{-- <input  type="text" class="form-control  @error('jenis') is-invalid @enderror" id="jenis" name="jenis" placeholder="Jenis"> --}}
 

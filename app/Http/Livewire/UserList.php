@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 use Psy\Readline\Hoa\Console;
 
@@ -42,10 +43,18 @@ class UserList extends Component
 
     public function destroy(){
         $user = User::where('id', $this->userId)->first();
-        $user->delete();
-        $this->userId = NULL;
+        $xId = $user->id;
+        $userId = Auth::id();
+        if($userId != $xId){
+            $this->dispatchBrowserEvent('success', ['message'=>'Pengguna berhasil dihapus !']);
+            $user->delete();
+        }else{
+            $this->dispatchBrowserEvent('warning', ['message'=>'Maaf, Pengguna tidak dapat dihapus !']);
+        }
+        // $user->delete();
+        // $this->userId = NULL;
 
-        $this->dispatchBrowserEvent('success', ['message'=>'Pengguna berhasil dihapus !']);
+        // $this->dispatchBrowserEvent('success', ['message'=>'Pengguna berhasil dihapus !']);
 
         $this->emit('UserStore');
     }

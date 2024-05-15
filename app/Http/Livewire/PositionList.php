@@ -39,11 +39,22 @@ class PositionList extends Component
     }
 
     public function destroy(){
+        
         $position = Position::where('id', $this->positionId)->first();
-        $position->delete();
-        $this->positionId = NULL;
+        $xId = $position->id;
+        // dd($xId);
 
-        $this->dispatchBrowserEvent('success', ['message'=>'Jabatan berhasil dihapus !']);
+        $userIds = User::pluck('position_id')->toArray();
+        // dd($userIds);
+        
+        if(!in_array($xId, $userIds)){
+            $position->delete();
+            $this->dispatchBrowserEvent('success', ['message'=>'Jabatan berhasil dihapus !']);
+        }else{
+            $this->dispatchBrowserEvent('warning', ['message'=>'Maaf, Jabatan ini tidak kosong !']);
+        }
+
+        $this->positionId = NULL;
 
         $this->emit('PositionStore');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Submission;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -15,6 +16,7 @@ class SubmissionUpdate extends Component
     public $user_id;
     public $jenis;
     public $status;
+    // public $userId;
 
     protected $listeners = [
         'dataSubmission' => 'showSubmission'
@@ -48,15 +50,20 @@ class SubmissionUpdate extends Component
 
         if($this->submissionId){
             $submission = Submission::find($this->submissionId);
-            $submission->update([
-                'name' => $this->name,
-                'jumlah' => $this->jumlah,
-                'keterangan' => $this->keterangan,
-                'jenis' => $this->jenis
-                // 'user_id' => ($this->auth()->id),
-                // 'user_id' => Auth::id(),
-                // 'status' => 0
-            ]);
+            $userId = Auth::id();
+            if($submission->status == 0 && $submission->user_id == $userId){
+                $submission->update([
+                    'name' => $this->name,
+                    'jumlah' => $this->jumlah,
+                    'keterangan' => $this->keterangan,
+                    'jenis' => $this->jenis
+                    // 'user_id' => ($this->auth()->id),
+                    // 'user_id' => Auth::id(),
+                    // 'status' => 0
+                ]);
+            }else{
+                dd("no");
+            }
 
             $this->name = NULL;
             $this->jumlah = NULL;

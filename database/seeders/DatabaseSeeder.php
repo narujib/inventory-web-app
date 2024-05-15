@@ -28,6 +28,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin123'), // password
             'remember_token' => Str::random(10),
         ]);
+        User::factory()->create([
+            'name' => 'jamal',
+            'email' => 'jamal@gmail.com',
+            'position_id' => 1,
+            'email_verified_at' => now(),
+            'password' => bcrypt('admin123'), // password
+            'remember_token' => Str::random(10),
+        ]);
 
         // \App\Models\User::factory(1000)->create();
 

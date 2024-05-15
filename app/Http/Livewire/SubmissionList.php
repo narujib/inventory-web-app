@@ -32,6 +32,20 @@ class SubmissionList extends Component
         $this->emit('getSubmission', $submission);
     }
 
+    public function deleteConfirm($id){
+        $this->submissionId = $id;
+    }
+
+    public function destroy(){
+        $submission = Submission::where('id', $this->submissionId)->first();
+        $submission->delete();
+        $this->submissionId = NULL;
+
+        $this->dispatchBrowserEvent('success', ['message'=>'Pengajuan berhasil dihapus !']);
+
+        $this->emit('SubmissionStore');
+    }
+
     public function cancel(){
         $this->submissionId = NULL;
     }

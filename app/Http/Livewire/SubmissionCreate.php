@@ -37,7 +37,7 @@ class SubmissionCreate extends Component
             // 'user_id' => ($this->auth()->id),
             'user_id' => Auth::id(),
             'jenis' => $this->jenis,
-            'status' => 0
+            'status' => 1
         ]);
 
         $this->name = NULL;

@@ -32,7 +32,7 @@ class AccStatus extends Component
         if($this->requestId){
             $submission = Submission::find($this->requestId);
             $submission->update([
-                'status' => 1
+                'status' => 2
         ]);
 
         $this->dispatchBrowserEvent('success', ['message'=>'Status berhasil diupdate !']);

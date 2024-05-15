@@ -32,7 +32,7 @@ class PendingStatus extends Component
         if($this->requestId){
             $submission = Submission::find($this->requestId);
             $submission->update([
-                'status' => 0
+                'status' => 1
         ]);
 
         $this->dispatchBrowserEvent('success', ['message'=>'Status berhasil diupdate !']);

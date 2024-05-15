@@ -51,7 +51,7 @@ class SubmissionUpdate extends Component
         if($this->submissionId){
             $submission = Submission::find($this->submissionId);
             $userId = Auth::id();
-            if($submission->status == 0 && $submission->user_id == $userId){
+            if($submission->status == 1 && $submission->user_id == $userId){
                 $submission->update([
                     'name' => $this->name,
                     'jumlah' => $this->jumlah,
@@ -61,22 +61,20 @@ class SubmissionUpdate extends Component
                     // 'user_id' => Auth::id(),
                     // 'status' => 0
                 ]);
+                $this->name = NULL;
+                $this->jumlah = NULL;
+                $this->jenis = NULL;
+                $this->keterangan = NULL;
+                // $this->user_id = NULL;
+                // $this->status = NULL;
+
+                // session()->flash('success', 'Pengajuan berhasil diedit');
+                $this->dispatchBrowserEvent('success', ['message'=>'Pengajuan berhasil diubah !']);
             }else{
-                dd("no");
+                $this->dispatchBrowserEvent('warning', ['message'=>'Tindakan ini tidak dapat dilanjutkan !']);
             }
-
-            $this->name = NULL;
-            $this->jumlah = NULL;
-            $this->jenis = NULL;
-            $this->keterangan = NULL;
-            // $this->user_id = NULL;
-            // $this->status = NULL;
-
-            // session()->flash('success', 'Pengajuan berhasil diedit');
-            $this->emit('submissionUpdateStatusFalse');
-            $this->dispatchBrowserEvent('success', ['message'=>'Pengajuan berhasil diubah !']);
-
         }
+        $this->emit('submissionUpdateStatusFalse');
         $this->emit('SubmissionUpdated');
     }
 

@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 class RequestList extends Component
 {
     public $perPage = 10;
+    public $filterPage = null;
     public $search = '';
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -20,7 +21,15 @@ class RequestList extends Component
     public function render()
     {
         return view('livewire.request-list',[
-            'submissions' => Submission::orderBy('id','desc')->where('name','like','%'.$this->search.'%')->paginate($this->perPage)
+            'submissions' => Submission::orderBy('id','desc')
+            ->where('name','like','%'.$this->search.'%')
+            ->when($this->filterPage,function($query){
+                $query->where('status', $this->filterPage);
+            })
+            // ->where('status', $this->filterPage)
+            ->paginate($this->perPage)
+            
+            // 'submissions' => Submission::orderBy('id','desc')->where('name','like','%'.$this->search.'%')->paginate($this->perPage)
         ]);
     }
 

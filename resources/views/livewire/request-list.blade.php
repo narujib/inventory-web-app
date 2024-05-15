@@ -3,21 +3,53 @@
         <div class="card-header d-flex align-items-center justify-content-between">
             <h5 class="mb-0">Permintaan</h5>
 
-            <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                        <i class="bx bx-printer bx-sm bx-border cursor-pointer me-3"></i>
-                            <select wire:model.live="perPage" id="defaultSelect" class="form-select">
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                            </select>
-                    </div>
+            {{-- <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <i class="bx bx-printer bx-sm bx-border cursor-pointer me-3"></i>
+                    <select wire:model.live="perPage" id="defaultSelect" class="form-select">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
                 </div>
+            </div> --}}
+        </div>     
+
+        <div class="mx-4 mb-3 d-flex align-items-center justify-content-between">
+            <div class="d-flex justify-content-between align-items-center">
+
+                <div class="d-flex align-items-center  me-3">
+                    <select class="form-select" wire:model.live="filterPage" id="exampleFormControlSelect1" aria-label="Default select example">
+                        {{-- <option selected="">--Filter--</option> --}}
+                        <option selected value="">
+                            --All status--
+                        </option>
+                        <option value="1">
+                            Pending
+                        </option>
+                        <option value="2">
+                            Diproses
+                        </option>
+                        <option value="3">
+                            Selesai
+                        </option>
+                    </select>
+                </div>
+                <div class="d-flex align-items-center">
+                    <select wire:model.live="perPage" id="defaultSelect" class="form-select">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+
+            <i class="bx bx-printer bx-sm bx-border cursor-pointer"></i>
         </div>     
         
         <div class="input-group input-group-merge px-4 mb-3">
             <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-            <input type="text" class="form-control" wire:model.defer="search" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" />
+            <input type="text" class="form-control" wire:model="search" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" />
         </div>
 
         <div class="table-responsive text-nowrap">
@@ -69,11 +101,11 @@
                                 <span class="fw-medium">{{ $submission->keterangan }}</span>
                             </td>
                             <td>                                
-                                @if ( $submission->status == '0' )
+                                @if ( $submission->status == '1' )
                                     <span class="badge bg-warning">pending</span>
-                                @elseif ( $submission->status == '1' ) 
-                                    <span class="badge bg-info">diproses</span>
                                 @elseif ( $submission->status == '2' ) 
+                                    <span class="badge bg-info">diproses</span>
+                                @elseif ( $submission->status == '3' ) 
                                     <span class="badge bg-success">selesai</span>
                                 @else
                                     <span class="badge bg-secondary">nothing</span>                                          

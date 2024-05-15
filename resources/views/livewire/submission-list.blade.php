@@ -17,7 +17,7 @@
         
         <div class="input-group input-group-merge px-4 mb-3">
             <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-            <input type="text" class="form-control" wire:model.defer="search" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" />
+            <input type="text" class="form-control" wire:model="search" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" />
         </div>
 
         <div class="table-responsive text-nowrap">
@@ -53,10 +53,10 @@
                             </td>
                             <td>
                                 @if ( $submission->jenis == '1' )
-                                    <span class="badge rounded-pill bg-label-primary">Prasarana</span>
-                                @elseif( $submission->jenis == '0' )
-                                    <span class="badge rounded-pill bg-label-success">Sarana</span>
-                                @elseif ($submission->jenis == '2')
+                                    <span class="badge rounded-pill bg-label-primary">Sarana</span>
+                                @elseif( $submission->jenis == '2' )
+                                    <span class="badge rounded-pill bg-label-success">Prasarana</span>
+                                @elseif ($submission->jenis == '3')
                                     <span class="badge rounded-pill bg-label-info">Lainnya</span>
                                 @else
                                     <span class="badge rounded-pill bg-label-secondary">nothing</span>
@@ -73,11 +73,11 @@
                                 <span class="fw-medium">{{ $submission->keterangan }}</span>
                             </td>
                             <td>  
-                                @if ( $submission->status == '0' )
+                                @if ( $submission->status == '1' )
                                     <span class="badge bg-warning">pending</span>
-                                @elseif ( $submission->status == '1' ) 
-                                    <span class="badge bg-info">diproses</span>
                                 @elseif ( $submission->status == '2' ) 
+                                    <span class="badge bg-info">diproses</span>
+                                @elseif ( $submission->status == '3' ) 
                                     <span class="badge bg-success">selesai</span>
                                 @else
                                     <span class="badge bg-secondary">nothing</span>                                          
@@ -85,7 +85,7 @@
                             </td>
                             <td>
                                 <div class="mt-0">
-                                    @if ($submission->user->id == Auth::user()->id && $submission->status < '1')                                        
+                                    @if ($submission->user->id == Auth::user()->id && $submission->status == 1)                                        
                                         <button  wire:click="getSubmission({{ $submission->id }})"  class="btn btn-sm btn-icon btn-warning me-2">
                                             <i class='bx bxs-edit'></i>
                                         </button>

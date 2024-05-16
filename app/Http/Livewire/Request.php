@@ -7,7 +7,8 @@ use Livewire\Component;
 class Request extends Component
 {
     protected $listeners = [
-        'getRequest' => 'data'
+        'getRequest' => 'data',
+        'getRequestP' => 'dataP'
     ];
 
     public function render()
@@ -17,5 +18,9 @@ class Request extends Component
 
     public function data($submission){
         $this->emit('dataRequest', $submission);
+    }
+
+    public function dataP($submission){
+        $this->emit('dataRequestP', $submission);
     }
 }

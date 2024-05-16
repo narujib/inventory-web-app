@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Inventory;
 use App\Models\Submission;
 use Livewire\Component;
 
@@ -11,7 +12,7 @@ class PendingStatus extends Component
     public $status;
 
     protected $listeners = [
-        'dataRequest' => 'showRequest',
+        'dataRequestP' => 'showRequest',
     ];
 
     public function render()
@@ -21,7 +22,9 @@ class PendingStatus extends Component
 
     public function showRequest($submission){
         $this->requestId = $submission['id'];
-        $this->status = $submission['status'];
+        
+        $data = Submission::where('id', $this->requestId)->first();
+        $this->status = $data['status'];
     }
 
     public function update(){
@@ -30,7 +33,8 @@ class PendingStatus extends Component
         ]);
 
         if($this->requestId){
-            $submission = Submission::find($this->requestId);
+            // $submission = Submission::find($this->requestId);
+            $submission = Submission::where('id', $this->requestId)->first();
             $submission->update([
                 'status' => 1
         ]);

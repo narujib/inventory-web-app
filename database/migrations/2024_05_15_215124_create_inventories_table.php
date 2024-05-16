@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('submissions', function (Blueprint $table) {
+        Schema::create('inventories', function (Blueprint $table) {
             $table->id();
-            
-            $table->integer('status')->comment('1=pending,2=prosess,3=finish');
-            $table->unsignedBigInteger('inventory_id')->references('id')->on('inventories')->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->string('name');
+            $table->integer('jumlah');
+            $table->string('keterangan');
+            $table->integer('jenis')->comment('1=sarana,2=prasarana,3=lainnya');
+
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('submissions');
+        Schema::dropIfExists('inventories');
     }
 };

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Inventory;
 use App\Models\Submission;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,7 +11,7 @@ class SubmissionList extends Component
 {
     public $submissionId;
     public $submissionUpdateStatus = false;
-    public $perPage = 10;
+    public $perPage = 5;
     protected $listeners = [
         'SubmissionUpdated' => 'render',
         'SubmissionStore' => 'render'
@@ -22,23 +23,33 @@ class SubmissionList extends Component
     public function render()
     {
         return view('livewire.submission-list',[
-            'submissions' => Submission::orderBy('id','desc')->where('name','like','%'.$this->search.'%')->paginate($this->perPage)
+            // $query = $request->input('query'),
+            // 'inventories' => Inventory::orderBy('id','desc')->where('name','like','%'.$this->search.'%')->paginate($this->perPage),
+            // 'submissions' => Inventory::orderBy('id','desc')->where('name','like','%'.$this->search.'%')->with('submission')->paginate($this->perPage),
+            'submissions' => Submission::whereHas('inventory', function($q){
+                $q->where('name','like','%'.$this->search.'%');
+            })->with(['user', 'inventory'])->paginate($this->perPage)
         ]);
     }
 
-    public function getSubmission($id){
+    public function getSubmission($inventory_id){
         $this->emit('submissionUpdateStatus');
-        $submission = Submission::find($id);
+        $submission = Submission::where('inventory_id', $inventory_id)->first();
         $this->emit('getSubmission', $submission);
     }
 
-    public function deleteConfirm($id){
-        $this->submissionId = $id;
+    public function deleteConfirm($inventory_id){
+        $this->submissionId = $inventory_id;
     }
 
     public function destroy(){
-        $submission = Submission::where('id', $this->submissionId)->first();
-        $submission->delete();
+
+        $i = Inventory::where('id', $this->submissionId)->first();
+        $x = Submission::where('inventory_id', $this->submissionId)->first();
+
+        $x->delete();
+        $i->delete();
+
         $this->submissionId = NULL;
 
         $this->dispatchBrowserEvent('success', ['message'=>'Pengajuan berhasil dihapus !']);

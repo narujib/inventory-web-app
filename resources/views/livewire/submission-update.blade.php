@@ -1,6 +1,6 @@
 <div class="col-xl">
     <div class="card mb-3">
-        <h5 class="card-header">Ubah pengajuan</h5>
+        <h5 class="card-header">Ubah pengajuan{{ $submissionInventoryId }}</h5>
 
         <div class="card-body">
             <form wire:submit.prevent="update">
@@ -42,9 +42,9 @@
 
                         <select id="jenis" wire:model.defer="jenis" name="jenis" class="form-select @error('jenis') is-invalid @enderror">
                             <option>---Pilih jenis---</option>
-                            <option value="0">Sarana</option>
-                            <option value="1">Prasarana</option>
-                            <option value="2">Lainnya</option>
+                            <option value="1">Sarana</option>
+                            <option value="2">Prasarana</option>
+                            <option value="3">Lainnya</option>
                         </select>
                         {{-- <input  type="text" class="form-control  @error('jenis') is-invalid @enderror" id="jenis" name="jenis" placeholder="Jenis"> --}}
 

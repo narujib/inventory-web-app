@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Inventory;
 use App\Models\Submission;
 use Livewire\Component;
 
@@ -21,7 +22,9 @@ class AccStatus extends Component
 
     public function showRequest($submission){
         $this->requestId = $submission['id'];
-        $this->status = $submission['status'];
+        
+        $data = Submission::where('id', $this->requestId)->first();
+        $this->status = $data['status'];
     }
 
     public function update(){
@@ -30,7 +33,8 @@ class AccStatus extends Component
         ]);
 
         if($this->requestId){
-            $submission = Submission::find($this->requestId);
+            // $submission = Submission::find($this->requestId);
+            $submission = Submission::where('id', $this->requestId)->first();
             $submission->update([
                 'status' => 2
         ]);

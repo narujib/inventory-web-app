@@ -5,4 +5,5 @@
                 @livewire('submission-create')            
         @endif
         @livewire('submission-list')
+
 </div>

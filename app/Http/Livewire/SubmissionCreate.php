@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Inventory;
 use App\Models\Submission;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Support\Facades\Auth;
@@ -16,33 +17,37 @@ class SubmissionCreate extends Component
     public $jenis;
     public $status;
 
+    protected $rules = [
+        'name' => 'required|string|max:255',
+        'jumlah' => 'required|integer',
+        'keterangan' => 'nullable|max:255',
+        'jenis' => 'required|integer',
+
+        'user_id' => 'nullable|integer',
+    ];
+
     public function render()
     {
         return view('livewire.submission-create');
     }
 
     public function store(){
-        $this->validate([
-            'name' => 'required|string|max:255',
-            'jumlah' => 'required|integer',
-            'keterangan' => 'nullable|max:255',
-            'user_id' => 'nullable|integer',
-            'jenis' => 'required|integer',
-            'status' => 'nullable|integer'
-        ]);
+        $this->validate();
 
-        $uId = IdGenerator::generate(['table' => 'submissions', 'field' => 'kode_permintaan', 'length' => 5, 'prefix' => 'XR']);
+        $inventory = new Inventory();
+        $inventory->name = $this->name;
+        $inventory->jumlah = $this->jumlah;
+        $inventory->keterangan = $this->keterangan;
+        $inventory->jenis = $this->jenis;
+        
+        $inventory->save();
+        
+        $submission = new Submission();
+        $submission->status = 1;
+        $submission->inventory_id = $inventory->id;
+        $submission->user_id = auth()->user()->id;
 
-        Submission::Create([
-            'name' => $this->name,
-            'kode_permintaan' => $uId,
-            'jumlah' => $this->jumlah,
-            'keterangan' => $this->keterangan,
-            // 'user_id' => ($this->auth()->id),
-            'user_id' => Auth::id(),
-            'jenis' => $this->jenis,
-            'status' => 1
-        ]);
+        $submission->save();
 
         $this->name = NULL;
         $this->jumlah = NULL;

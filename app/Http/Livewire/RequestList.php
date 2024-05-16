@@ -21,13 +21,20 @@ class RequestList extends Component
     public function render()
     {
         return view('livewire.request-list',[
-            'submissions' => Submission::orderBy('id','desc')
-            ->where('name','like','%'.$this->search.'%')
-            ->when($this->filterPage,function($query){
-                $query->where('status', $this->filterPage);
-            })
-            // ->where('status', $this->filterPage)
-            ->paginate($this->perPage)
+            'submissions' => Submission::whereHas('inventory', function($q){
+                $q->where('name','like','%'.$this->search.'%');
+                })
+                ->with(['user', 'inventory'])
+                ->when($this->filterPage,function($query){
+                    $query->where('status', $this->filterPage);
+                })->paginate($this->perPage)
+            // 'submissions' => Submission::orderBy('id','desc')
+            // ->where('name','like','%'.$this->search.'%')
+            // ->when($this->filterPage,function($query){
+            //     $query->where('status', $this->filterPage);
+            // })
+            // // ->where('status', $this->filterPage)
+            // ->paginate($this->perPage)
             
             // 'submissions' => Submission::orderBy('id','desc')->where('name','like','%'.$this->search.'%')->paginate($this->perPage)
         ]);
@@ -40,7 +47,7 @@ class RequestList extends Component
 
     public function getSubmissionP($id){
         $submission = Submission::find($id);
-        $this->emit('getRequest', $submission);
+        $this->emit('getRequestP', $submission);
     }
 
     public function updatingSearch(){

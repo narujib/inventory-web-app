@@ -78,17 +78,17 @@
                             <td>{{ $submissions->firstItem() + $index }}</td>
                             <td>
                                 <i class="bx bxl-angular bx-sm text-danger me-3"></i>
-                                <span class="fw-medium">{{ $submission->name }}</span>
+                                <span class="fw-medium">{{ $submission->inventory->name }}</span>
                             </td>
                             <td>
-                                <span class="fw-medium">{{ $submission->jumlah }}</span>
+                                <span class="fw-medium">{{ $submission->inventory->jumlah }}</span>
                             </td>
                             <td>
-                                @if ( $submission->jenis == '1' )
+                                @if ( $submission->inventory->jenis == '1' )
                                     <span class="badge rounded-pill bg-label-primary">Prasarana</span>
-                                @elseif( $submission->jenis == '0' )
+                                @elseif( $submission->inventory->jenis == '0' )
                                     <span class="badge rounded-pill bg-label-success">Sarana</span>
-                                @elseif ($submission->jenis == '2')
+                                @elseif ($submission->inventory->jenis == '2')
                                     <span class="badge rounded-pill bg-label-info">Lainnya</span>
                                 @else
                                     <span class="badge rounded-pill bg-label-secondary">nothing</span>
@@ -98,7 +98,7 @@
                                 <span class="fw-medium">{{ $submission->user->name }}</span>
                             </td>
                             <td>
-                                <span class="fw-medium">{{ $submission->keterangan }}</span>
+                                <span class="fw-medium">{{ $submission->inventory->keterangan }}</span>
                             </td>
                             <td>                                
                                 @if ( $submission->status == '1' )

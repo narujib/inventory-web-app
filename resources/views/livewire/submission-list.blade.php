@@ -41,28 +41,32 @@
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
+                    {{-- @foreach ($submissions  as $x)
+                        {{ $x->name }}
+                    @endforeach --}}
                     @foreach ($submissions as $index => $submission)                        
                         <tr>
                             <td>{{ $submissions->firstItem() + $index }}</td>
                             <td>
                                 <i class="bx bxl-angular bx-sm text-danger me-3"></i>
-                                <span class="fw-medium">{{ $submission->name }}</span>
+                                <span class="fw-medium">{{ $submission->inventory->name }}</span>
                             </td>
                             <td>
-                                <span class="fw-medium">{{ $submission->jumlah }}</span>
+                                <span class="fw-medium">{{ $submission->inventory->jumlah }}</span>
                             </td>
                             <td>
-                                @if ( $submission->jenis == '1' )
+                                @if ( $submission->inventory->jenis == '1' )
                                     <span class="badge rounded-pill bg-label-primary">Sarana</span>
-                                @elseif( $submission->jenis == '2' )
+                                @elseif( $submission->inventory->jenis == '2' )
                                     <span class="badge rounded-pill bg-label-success">Prasarana</span>
-                                @elseif ($submission->jenis == '3')
+                                @elseif ($submission->inventory->jenis == '3')
                                     <span class="badge rounded-pill bg-label-info">Lainnya</span>
                                 @else
                                     <span class="badge rounded-pill bg-label-secondary">nothing</span>
                                 @endif
                             </td>
                             <td>
+                                {{-- <span class="fw-medium">{{ $submission->user->name }}</span>                                 --}}
                                 @if ( $submission->user->name != null)
                                     <span class="fw-medium">{{ $submission->user->name }}</span>                                
                                 @else
@@ -70,7 +74,7 @@
                                 @endif
                             </td>
                             <td>
-                                <span class="fw-medium">{{ $submission->keterangan }}</span>
+                                <span class="fw-medium">{{ $submission->inventory->keterangan }}</span>
                             </td>
                             <td>  
                                 @if ( $submission->status == '1' )
@@ -85,20 +89,19 @@
                             </td>
                             <td>
                                 <div class="mt-0">
-                                    @if ($submission->user->id == Auth::user()->id && $submission->status == 1)                                        
+                                        <button  wire:click="getSubmission({{ $submission->inventory_id }})"  class="btn btn-sm btn-icon btn-warning me-2">
+                                            <i class='bx bxs-edit'></i>
+                                        </button>
+                                        <button wire:click="deleteConfirm({{ $submission->inventory_id }})" type="button" class="btn btn-sm btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
+                                            <i class='bx bx-trash' ></i>
+                                        </button>
+                                    {{-- @if ($submission->user_id == Auth::user()->id && $submission->inventory->status == 1)                                        
                                         <button  wire:click="getSubmission({{ $submission->id }})"  class="btn btn-sm btn-icon btn-warning me-2">
                                             <i class='bx bxs-edit'></i>
                                         </button>
                                         <button wire:click="deleteConfirm({{ $submission->id }})" type="button" class="btn btn-sm btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
                                             <i class='bx bx-trash' ></i>
                                         </button>
-                                    {{-- @elseif ($submission->status >= '1')
-                                        <button disabled  class="btn btn-sm btn-icon btn-warning me-2">
-                                            <i class='bx bxs-edit'></i>
-                                        </button>
-                                        <button disabled type="button" class="btn btn-sm btn-icon btn-danger" >
-                                            <i class='bx bx-trash' ></i>
-                                        </button> --}}
                                     @else
                                         <button disabled wire:click="getSubmission({{ $submission->id }})"  class="btn btn-sm btn-icon btn-warning me-2">
                                             <i class='bx bxs-edit'></i>
@@ -106,7 +109,7 @@
                                         <button disabled type="reset" class="btn btn-sm btn-icon btn-danger">
                                             <i class='bx bx-trash' ></i>
                                         </button>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </td>
                         </tr>

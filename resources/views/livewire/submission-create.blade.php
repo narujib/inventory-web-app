@@ -9,6 +9,7 @@
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="basic-default-fullname">Nama</label>
                         <input wire:model.defer="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama">
+                        {{-- <input wire:model.defer="inventory_id" type="text" class="form-control  @error('name') is-invalid @enderror" id="inventory_id" name="inventory_id" placeholder="inventory_id"> --}}
 
                         @error('name')
                             <span class="invalid-feedback" role="alert">

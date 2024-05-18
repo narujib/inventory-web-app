@@ -14,7 +14,8 @@ class PositionCreate extends Component
         return view('livewire.position-create');
     }
 
-    public function store(){
+    public function store()
+    {
         $this->validate([
             'name' => 'required|string|max:255|unique:positions,name'
         ]);
@@ -26,7 +27,6 @@ class PositionCreate extends Component
         $this->name = NULL;
 
         $this->dispatchBrowserEvent('success', ['message'=>'Jabatan berhasil ditambahkan !']);
-
         $this->emit('PositionStore');
     }
 }

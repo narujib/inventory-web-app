@@ -11,7 +11,7 @@ class Position extends Component
     protected $listeners = [
         'positionUpdateStatus',
         'positionUpdateStatusFalse',
-        'getPosition' => 'data',
+        'getPosition' => 'data'
     ];
 
     public function render()
@@ -19,15 +19,18 @@ class Position extends Component
         return view('livewire.position');
     }
 
-    public function positionUpdateStatus(){
+    public function positionUpdateStatus()
+    {
         $this->positionUpdateStatus = true;
     }
 
-    public function positionUpdateStatusFalse(){
+    public function positionUpdateStatusFalse()
+    {
         $this->positionUpdateStatus = false;
     }
 
-    public function data($position){
+    public function data($position)
+    {
         $this->emit('dataPosition', $position);
     } 
 }

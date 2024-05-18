@@ -8,7 +8,8 @@ class Request extends Component
 {
     protected $listeners = [
         'getRequest' => 'data',
-        'getRequestP' => 'dataP'
+        'getRequestP' => 'dataP',
+        'getRequestS' => 'dataS'
     ];
 
     public function render()
@@ -16,11 +17,19 @@ class Request extends Component
         return view('livewire.request');
     }
 
-    public function data($submission){
+    public function data($submission)
+    {
+        // dd($submission);
         $this->emit('dataRequest', $submission);
     }
 
-    public function dataP($submission){
+    public function dataS($submission)
+    {
+        $this->emit('dataRequestS', $submission);
+    }
+
+    public function dataP($submission)
+    {
         $this->emit('dataRequestP', $submission);
     }
 }

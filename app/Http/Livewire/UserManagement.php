@@ -19,15 +19,18 @@ class UserManagement extends Component
         return view('livewire.user-management');
     }
 
-    public function userUpdateStatus(){
+    public function userUpdateStatus()
+    {
         $this->userUpdateStatus = true;
     }
     
-    public function userUpdateStatusFalse(){
+    public function userUpdateStatusFalse()
+    {
         $this->userUpdateStatus = false;
     }
 
-    public function data($user){
+    public function data($user)
+    {
         $this->emit('dataUser', $user);
     }   
 }

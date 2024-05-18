@@ -27,7 +27,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-phone">Telepon</label>
-                    <input wire:model.defer="telepon" type="text" id="telepon" name="telepon" class="form-control phone-mask  @error('telepon') is-invalid @enderror" placeholder="Telepon">
+                    <input wire:model.defer="telepon" type="number" id="telepon" name="telepon" class="form-control phone-mask  @error('telepon') is-invalid @enderror" placeholder="Telepon">
 
                     @error('telepon')
                         <span class="invalid-feedback" role="alert">

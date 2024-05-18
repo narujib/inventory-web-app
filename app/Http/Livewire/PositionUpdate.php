@@ -19,12 +19,14 @@ class PositionUpdate extends Component
         return view('livewire.position-update');
     }
 
-    public function showPosition($position){
+    public function showPosition($position)
+    {
         $this->positionId = $position['id'];
         $this->name = $position['name'];
     }
 
-    public function update(){
+    public function update()
+    {
         $this->validate([
             'name' => 'required|string|max:255|unique:positions,name,'.$this->positionId
         ]);
@@ -37,11 +39,12 @@ class PositionUpdate extends Component
 
             $this->name = NULL;
 
-            // session()->flash('success', 'Posisi berhasil diedit');
-            $this->emit('positionUpdateStatusFalse');
             $this->dispatchBrowserEvent('success', ['message'=>'Jabatan berhasil diubah !']);
+            $this->emit('PositionUpdated');
+        }else{
+            $this->dispatchBrowserEvent('warning', ['message'=>'Terjadi kesalahan !']);
         }
-        $this->emit('PositionUpdated');
+        $this->emit('positionUpdateStatusFalse');
     }
 
     public function cancel(){

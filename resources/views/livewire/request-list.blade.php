@@ -77,7 +77,7 @@
                         <tr>
                             <td>{{ $submissions->firstItem() + $index }}</td>
                             <td>
-                                <i class="bx bxl-angular bx-sm text-danger me-3"></i>
+                                <i>{{ $submission->kode_permintaan }} -</i>
                                 <span class="fw-medium">{{ $submission->inventory->name }}</span>
                             </td>
                             <td>
@@ -85,10 +85,10 @@
                             </td>
                             <td>
                                 @if ( $submission->inventory->jenis == '1' )
-                                    <span class="badge rounded-pill bg-label-primary">Prasarana</span>
-                                @elseif( $submission->inventory->jenis == '0' )
-                                    <span class="badge rounded-pill bg-label-success">Sarana</span>
-                                @elseif ($submission->inventory->jenis == '2')
+                                    <span class="badge rounded-pill bg-label-primary">Sarana</span>
+                                @elseif( $submission->inventory->jenis == '2' )
+                                    <span class="badge rounded-pill bg-label-success">Prasarana</span>
+                                @elseif ($submission->inventory->jenis == '3')
                                     <span class="badge rounded-pill bg-label-info">Lainnya</span>
                                 @else
                                     <span class="badge rounded-pill bg-label-secondary">nothing</span>
@@ -126,7 +126,7 @@
                                             </div>
 
                                             <div class="mx-auto">
-                                                <button class="btn mt-2 btn-sm btn-outline-secondary w-100"  data-bs-toggle="modal" data-bs-target="#backDropModal">Selesai</button>
+                                                <button class="btn mt-2 btn-sm btn-outline-secondary w-100"  data-bs-toggle="modal" data-bs-target="#backDropModalS" wire:click="getSubmissionS({{ $submission->id }})">Selesai</button>
                                             </div>
                                         </div>
                                     </div>
@@ -141,5 +141,6 @@
 
     @livewire('acc-status')
     @livewire('pending-status')
+    @livewire('sucsess-status')
 
 </div>

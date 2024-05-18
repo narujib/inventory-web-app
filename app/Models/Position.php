@@ -9,9 +9,7 @@ class Position extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name'
-    ];
+    protected $guarded = ['id'];
 
     public function user(){
         return $this->hasMany(User::class);

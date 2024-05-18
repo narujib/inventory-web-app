@@ -9,10 +9,9 @@ class Suplier extends Model
 {
     use HasFactory;
 
-        protected $fillable = [
-        'name',
-        'email',
-        'alamat',
-        'telepon',
-    ];
+    protected $guarded = ['id'];
+
+    public function inventory(){
+        return $this->hasMany(Inventory::class);
+    }
 }

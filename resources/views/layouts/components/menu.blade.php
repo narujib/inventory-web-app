@@ -65,22 +65,13 @@
         <li class="menu-item {{ Request::is('dashboard') ? 'active' : '' }}">
             <a href="{{ url('dashboard') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
-            <div data-i18n="Dashboards">Dashboards</div>
+            <div data-i18n="Dashboards">Dashboard</div>
             </a>
         </li>
 
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Apps &amp; Pages</span>
         </li>
-        <!-- Apps -->
-        {{-- <li class="menu-item {{ Request::is('user-management') ? 'active' : '' }}">
-            <a
-            href="{{ url('user-management') }}"
-            class="menu-link ">
-            <i class="menu-icon tf-icons bx bx-user"></i>
-            <div data-i18n="User-Management">Manajemen Pengguna</div>
-            </a>
-        </li> --}}
 
         <li class="menu-item {{ Request::is('user-management', 'position') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -101,35 +92,35 @@
             </ul>
         </li>
 
-        <li class="menu-item {{ Request::is('request') ? 'active open' : '' }}">
+        <li class="menu-item {{ Request::is('request', 'incoming') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-folder-open"></i>
             <div data-i18n="Inventory">Manajemen Barang</div>
             </a>
             <ul class="menu-sub">
-            <li class="menu-item">
-                <a href="pages-account-settings-account.html" class="menu-link">
-                <div data-i18n="Account">Inventaris</div>
-                </a>
-            </li>
-            <li class="menu-item {{ Request::is('request') ? 'active' : '' }}">
-                <a href="{{ url('request') }}" class="menu-link">
-                <div data-i18n="Notifications">Permintaan</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="pages-account-settings-connections.html" class="menu-link">
-                <div data-i18n="Connections">Connections</div>
-                </a>
-            </li>
+                <li class="menu-item {{ Request::is('suplier') ? 'active' : '' }}">
+                    <a
+                    href="{{ url('suplier') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-user-voice"></i>
+                    <div data-i18n="Suplier">Suplier</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('request') ? 'active' : '' }}">
+                    <a href="{{ url('request') }}" class="menu-link">
+                    <div data-i18n="Notifications">Permintaan</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('incoming') ? 'active' : '' }}">
+                    <a href="{{ url('incoming') }}" class="menu-link">
+                    <div data-i18n="Notifications">Barang Masuk</div>
+                    </a>
+                </li>
             </ul>
         </li>
-        <li class="menu-item {{ Request::is('suplier') ? 'active' : '' }}">
-            <a
-            href="{{ url('suplier') }}"
-            class="menu-link">
+        <li class="menu-item {{ Request::is('inventaris') ? 'active' : '' }}">
+            <a href="pages-account-settings-account.html" class="menu-link">
             <i class="menu-icon tf-icons bx bx-user-voice"></i>
-            <div data-i18n="Suplier">Suplier</div>
+            <div data-i18n="Account">Inventaris</div>
             </a>
         </li>
         <li class="menu-item {{ Request::is('submission') ? 'active' : '' }}">
@@ -140,15 +131,6 @@
             <div data-i18n="Suplier">Pengajuan</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a
-            href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-email.html"
-            target="_blank"
-            class="menu-link">
-            <i class="menu-icon tf-icons bx bx-transfer"></i>
-            <div data-i18n="Transaction">Transaction</div>
-            </a>
-        </li>
 
         <!-- Components -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
@@ -157,137 +139,6 @@
             <a href="cards-basic.html" class="menu-link">
             <i class="menu-icon tf-icons bx bx-collection"></i>
             <div data-i18n="Basic">Cards</div>
-            </a>
-        </li>
-        <!-- User interface -->
-        <li class="menu-item">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-box"></i>
-            <div data-i18n="User interface">User interface</div>
-            </a>
-            <ul class="menu-sub">
-            <li class="menu-item">
-                <a href="ui-accordion.html" class="menu-link">
-                <div data-i18n="Accordion">Accordion</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-alerts.html" class="menu-link">
-                <div data-i18n="Alerts">Alerts</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-badges.html" class="menu-link">
-                <div data-i18n="Badges">Badges</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-buttons.html" class="menu-link">
-                <div data-i18n="Buttons">Buttons</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-carousel.html" class="menu-link">
-                <div data-i18n="Carousel">Carousel</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-collapse.html" class="menu-link">
-                <div data-i18n="Collapse">Collapse</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-dropdowns.html" class="menu-link">
-                <div data-i18n="Dropdowns">Dropdowns</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-footer.html" class="menu-link">
-                <div data-i18n="Footer">Footer</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-list-groups.html" class="menu-link">
-                <div data-i18n="List Groups">List groups</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-modals.html" class="menu-link">
-                <div data-i18n="Modals">Modals</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-navbar.html" class="menu-link">
-                <div data-i18n="Navbar">Navbar</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-offcanvas.html" class="menu-link">
-                <div data-i18n="Offcanvas">Offcanvas</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-pagination-breadcrumbs.html" class="menu-link">
-                <div data-i18n="Pagination &amp; Breadcrumbs">Pagination &amp; Breadcrumbs</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-progress.html" class="menu-link">
-                <div data-i18n="Progress">Progress</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-spinners.html" class="menu-link">
-                <div data-i18n="Spinners">Spinners</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-tabs-pills.html" class="menu-link">
-                <div data-i18n="Tabs &amp; Pills">Tabs &amp; Pills</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-toasts.html" class="menu-link">
-                <div data-i18n="Toasts">Toasts</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-tooltips-popovers.html" class="menu-link">
-                <div data-i18n="Tooltips & Popovers">Tooltips &amp; popovers</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="ui-typography.html" class="menu-link">
-                <div data-i18n="Typography">Typography</div>
-                </a>
-            </li>
-            </ul>
-        </li>
-
-        <!-- Extended components -->
-        <li class="menu-item">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-copy"></i>
-            <div data-i18n="Extended UI">Extended UI</div>
-            </a>
-            <ul class="menu-sub">
-            <li class="menu-item">
-                <a href="extended-ui-perfect-scrollbar.html" class="menu-link">
-                <div data-i18n="Perfect Scrollbar">Perfect scrollbar</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="extended-ui-text-divider.html" class="menu-link">
-                <div data-i18n="Text Divider">Text Divider</div>
-                </a>
-            </li>
-            </ul>
-        </li>
-
-        <li class="menu-item">
-            <a href="icons-boxicons.html" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-crown"></i>
-            <div data-i18n="Boxicons">Boxicons</div>
             </a>
         </li>
 

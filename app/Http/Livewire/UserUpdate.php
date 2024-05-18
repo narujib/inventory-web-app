@@ -11,7 +11,6 @@ class UserUpdate extends Component
     public $userId;
     public $email;
     public $name;
-    // public $password;
     public $position_id;
 
     protected $listeners = [
@@ -25,20 +24,19 @@ class UserUpdate extends Component
         ]);
     }
 
-    public function showUser($user){
-        // dd($user);
+    public function showUser($user)
+    {
         $this->userId = $user['id'];
         $this->name = $user['name'];
         $this->email = $user['email'];
-        // $this->password = $user['password'];
         $this->position_id = $user['position_id'];
     }
 
-    public function update(){
+    public function update()
+    {
         $this->validate([
             'name' => 'required|string|max:255',
             'position_id' => 'required|integer',
-            // 'password' => 'required|string|min:8',
             'email' => 'required|string|email|max:255|unique:users,email,'.$this->userId
         ]);
 
@@ -54,10 +52,8 @@ class UserUpdate extends Component
             $this->email = NULL;
             $this->position_id = NULL;
 
-            // session()->flash('success', 'User berhasil diedit');
             $this->emit('userUpdateStatusFalse');
             $this->dispatchBrowserEvent('success', ['message'=>'Pengguna berhasil diubah !']);
-
         }
         $this->emit('UserUpdated');
     }

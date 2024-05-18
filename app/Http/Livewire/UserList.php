@@ -12,16 +12,19 @@ use function Termwind\render;
 
 class UserList extends Component
 {
-    public $userId;
+    use WithPagination;
+
     public $userUpdateStatus = false;
     public $perPage = 10;
+    public $search = '';
+    protected $paginationTheme = 'bootstrap';
+
+    public $userId;
+
     protected $listeners = [
         'UserUpdated' => 'render',
         'UserStore' => 'render'
     ];
-    public $search = '';
-    use WithPagination;
-    protected $paginationTheme = 'bootstrap';
 
     public function render()
     {
@@ -30,18 +33,20 @@ class UserList extends Component
         ]);
     }
 
-    public function getUser($id){
-        // dd($id);
+    public function getUser($id)
+    {
         $this->emit('userUpdateStatus');
         $user = User::find($id);
         $this->emit('getUser', $user);
     }
 
-    public function deleteConfirm($id){
+    public function deleteConfirm($id)
+    {
         $this->userId = $id;
     }
 
-    public function destroy(){
+    public function destroy()
+    {
         $user = User::where('id', $this->userId)->first();
         $xId = $user->id;
         $userId = Auth::id();
@@ -51,19 +56,16 @@ class UserList extends Component
         }else{
             $this->dispatchBrowserEvent('warning', ['message'=>'Maaf, Pengguna tidak dapat dihapus !']);
         }
-        // $user->delete();
-        // $this->userId = NULL;
-
-        // $this->dispatchBrowserEvent('success', ['message'=>'Pengguna berhasil dihapus !']);
-
         $this->emit('UserStore');
     }
 
-    public function cancel(){
+    public function cancel()
+    {
         $this->userId = NULL;
     }
 
-    public function updatingSearch(){
+    public function updatingSearch()
+    {
         $this->resetPage();
     }
 }

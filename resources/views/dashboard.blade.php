@@ -524,7 +524,8 @@
         <!--/ Transactions -->
 
         @livewire('user-list')
-        @livewire('user-list')
+        @livewire('suplier-list')
+        @livewire('request-list')
 
 
     </div>

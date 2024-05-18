@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             
             $table->integer('status')->comment('1=pending,2=prosess,3=finish');
+            $table->string('kode_permintaan');
             $table->unsignedBigInteger('inventory_id')->references('id')->on('inventories')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

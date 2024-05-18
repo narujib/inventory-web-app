@@ -11,18 +11,26 @@ use Livewire\Component;
 class SubmissionCreate extends Component
 {
     public $name;
+    public $kode_barang;
     public $jumlah;
     public $keterangan;
-    public $user_id;
     public $jenis;
+
     public $status;
+    public $kode_permintaan;
+    public $inventory_id;
+    public $user_id;
 
     protected $rules = [
         'name' => 'required|string|max:255',
-        'jumlah' => 'required|integer',
-        'keterangan' => 'nullable|max:255',
-        'jenis' => 'required|integer',
+        'kode_barang' => 'nullable|string|max:255||unique:inventories,kode_barang',
+        'jumlah' => 'required|integer|max:9999',
+        'keterangan' => 'nullable|string|max:255',
+        'jenis' => 'required|integer|max:99',
 
+        'status' => 'nullable|integer|max:99',
+        'kode_permintaan' => 'nullable|string|max:255|unique:submissions,kode_permintaan',
+        'keterangan' => 'nullable|string|max:255',        
         'user_id' => 'nullable|integer',
     ];
 
@@ -31,11 +39,14 @@ class SubmissionCreate extends Component
         return view('livewire.submission-create');
     }
 
-    public function store(){
+    public function store(){        
         $this->validate();
+        $uID = IdGenerator::generate(['table' => 'submissions', 'field' => 'kode_permintaan', 'length' => 5, 'prefix' => 'PR']);
 
         $inventory = new Inventory();
+
         $inventory->name = $this->name;
+        $inventory->kode_barang = null;
         $inventory->jumlah = $this->jumlah;
         $inventory->keterangan = $this->keterangan;
         $inventory->jenis = $this->jenis;
@@ -44,21 +55,23 @@ class SubmissionCreate extends Component
         
         $submission = new Submission();
         $submission->status = 1;
+        $submission->kode_permintaan = $uID;
         $submission->inventory_id = $inventory->id;
         $submission->user_id = auth()->user()->id;
 
         $submission->save();
 
         $this->name = NULL;
+        $this->kode_barang = NULL;
         $this->jumlah = NULL;
         $this->keterangan = NULL;
-        $this->user_id = NULL;
         $this->jenis = NULL;
         $this->status = NULL;
+        $this->kode_permintaan = NULL;
+        $this->inventory_id = NULL;
+        $this->user_id = NULL;
 
-        // session()->flash('success', 'Berhasil mengajukan barang !');
         $this->dispatchBrowserEvent('success', ['message'=>'Pengajuan berhasil ditambahkan !']);
-
         $this->emit('SubmissionStore');
     }
 }

@@ -8,10 +8,12 @@ use Livewire\WithPagination;
 
 class RequestList extends Component
 {
+    use WithPagination;
+
     public $perPage = 10;
     public $filterPage = null;
     public $search = '';
-    use WithPagination;
+    
     protected $paginationTheme = 'bootstrap';
 
     protected $listeners = [
@@ -28,24 +30,23 @@ class RequestList extends Component
                 ->when($this->filterPage,function($query){
                     $query->where('status', $this->filterPage);
                 })->paginate($this->perPage)
-            // 'submissions' => Submission::orderBy('id','desc')
-            // ->where('name','like','%'.$this->search.'%')
-            // ->when($this->filterPage,function($query){
-            //     $query->where('status', $this->filterPage);
-            // })
-            // // ->where('status', $this->filterPage)
-            // ->paginate($this->perPage)
-            
-            // 'submissions' => Submission::orderBy('id','desc')->where('name','like','%'.$this->search.'%')->paginate($this->perPage)
         ]);
     }
 
-    public function getSubmission($id){
+    public function getSubmission($id
+    ){
         $submission = Submission::find($id);
         $this->emit('getRequest', $submission);
     }
 
-    public function getSubmissionP($id){
+    public function getSubmissionS($id)
+    {
+        $submission = Submission::find($id);
+        $this->emit('getRequestS', $submission);
+    }
+
+    public function getSubmissionP($id)
+    {
         $submission = Submission::find($id);
         $this->emit('getRequestP', $submission);
     }

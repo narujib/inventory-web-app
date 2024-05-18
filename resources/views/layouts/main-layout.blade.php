@@ -138,6 +138,10 @@ data-template="vertical-menu-template-free">
             window.addEventListener('error', event =>{
                 toastr.error(event.detail.message);
             });
+
+            window.addEventListener('close-modal', event => {
+                $('#backDropModalS').modal('hide');
+            });
         </script>
 
 

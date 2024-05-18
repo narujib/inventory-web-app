@@ -24,7 +24,7 @@ class SuplierCreate extends Component
             'name' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'telepon' => 'required|string|max:255|unique:supliers,telepon',
-            'email' => 'string|email|max:255|unique:supliers,email'
+            'email' => 'nullable|string|email|max:255|unique:supliers,email'
         ]);
 
         Suplier::Create([
@@ -39,7 +39,6 @@ class SuplierCreate extends Component
         $this->telepon = NULL;
         $this->alamat = NULL;
 
-        // session()->flash('success', 'Berhasil menambahkan suplier');
         $this->dispatchBrowserEvent('success', ['message'=>'Suplier berhasil ditambahkan !']);
 
         $this->emit('SuplierStore');

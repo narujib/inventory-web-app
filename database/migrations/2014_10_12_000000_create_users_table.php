@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
 
-            // $table->foreign('position_id')->references('id')->on('positions');
             $table->timestamps();
         });
     }

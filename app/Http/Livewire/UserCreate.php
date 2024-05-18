@@ -21,12 +21,13 @@ class UserCreate extends Component
         ]);
     }
 
-    public function store(){
+    public function store()
+    {
         $this->validate([
             'name' => 'required|string|max:255',
-            'position_id' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8'
+            'position_id' => 'required|integer|max:99',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|max:99'
         ]);
 
         User::Create([
@@ -41,9 +42,7 @@ class UserCreate extends Component
         $this->position_id = NULL;
         $this->password = NULL;
 
-        // session()->flash('success', 'User berhasil dibuat');
         $this->dispatchBrowserEvent('success', ['message'=>'Pengguna berhasil ditambahkan !']);
-
         $this->emit('UserStore');
     }
 }

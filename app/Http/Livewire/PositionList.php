@@ -9,16 +9,20 @@ use Livewire\WithPagination;
 
 class PositionList extends Component
 {
+    use WithPagination;
+
     public $positionId;
-    public $positionUpdateStatus = false;
+
     public $perPage = 10;
+    public $search = '';
+    public $positionUpdateStatus = false;
+
+    protected $paginationTheme = 'bootstrap';
+    
     protected $listeners = [
         'PositionUpdated' => 'render',
         'PositionStore' => 'render'
     ];
-    public $search = '';
-    use WithPagination;
-    protected $paginationTheme = 'bootstrap';
 
     public function render()
     {
@@ -27,43 +31,43 @@ class PositionList extends Component
         ]);
     }
 
-    public function getPosition($id){
+    public function getPosition($id)
+    {
         $this->emit('positionUpdateStatus');
         $position = Position::find($id);
         $this->emit('getPosition', $position);
     }
 
-    public function deleteConfirm($id){
+    public function deleteConfirm($id)
+    {
         $this->emit('positionUpdateStatusFalse');
         $this->positionId = $id;
     }
 
-    public function destroy(){
-        
+    public function destroy()
+    {    
         $position = Position::where('id', $this->positionId)->first();
-        $xId = $position->id;
-        // dd($xId);
-
         $userIds = User::pluck('position_id')->toArray();
-        // dd($userIds);
+        $xId = $position->id;
         
         if(!in_array($xId, $userIds)){
             $position->delete();
+
             $this->dispatchBrowserEvent('success', ['message'=>'Jabatan berhasil dihapus !']);
+            $this->emit('PositionStore');
         }else{
             $this->dispatchBrowserEvent('warning', ['message'=>'Maaf, Jabatan ini tidak kosong !']);
         }
-
-        $this->positionId = NULL;
-
-        $this->emit('PositionStore');
-    }
-
-    public function cancel(){
         $this->positionId = NULL;
     }
 
-    public function updatingSearch(){
+    public function cancel()
+    {
+        $this->positionId = NULL;
+    }
+
+    public function updatingSearch()
+    {
         $this->resetPage();
     }
 }

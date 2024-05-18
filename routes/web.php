@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/position', [App\Http\Controllers\PositionController::class, 'index']);
     Route::get('/submission', [App\Http\Controllers\SubmissionController::class, 'index']);
     Route::get('/request', [App\Http\Controllers\RequestController::class, 'index']);
+    Route::get('/incoming', [App\Http\Controllers\IncomingController::class, 'index']);
     Route::get('/suplier', [App\Http\Controllers\SuplierController::class, 'index']);
 });
 

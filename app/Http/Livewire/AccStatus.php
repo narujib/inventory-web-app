@@ -21,9 +21,8 @@ class AccStatus extends Component
     }
 
     public function showRequest($submission){
-        $this->requestId = $submission['id'];
-        
-        $data = Submission::where('id', $this->requestId)->first();
+        $this->requestId = $submission['inventory_id'];
+        $data = Submission::where('inventory_id', $this->requestId)->first();
         $this->status = $data['status'];
     }
 
@@ -32,16 +31,19 @@ class AccStatus extends Component
             'status' => 'required'
         ]);
 
-        if($this->requestId){
-            // $submission = Submission::find($this->requestId);
-            $submission = Submission::where('id', $this->requestId)->first();
-            $submission->update([
-                'status' => 2
-        ]);
+        $submission = Submission::where('inventory_id', $this->requestId)->first();
 
-        $this->dispatchBrowserEvent('success', ['message'=>'Status berhasil diupdate !']);
+        if($submission->status == 1){
+            if($this->requestId){
+                $submission->update([
+                    'status' => 2
+                ]);
+                $this->dispatchBrowserEvent('success', ['message'=>'Status berhasil diupdate !']);
+                $this->emit('RequestUpdated');
+            }
+        }else{
+            $this->dispatchBrowserEvent('warning', ['message'=>'Terjadi kesalahan !']);
         }
-        $this->emit('RequestUpdated');
     }
 
     public function cancel(){

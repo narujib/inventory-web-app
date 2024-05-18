@@ -7,10 +7,11 @@ use Livewire\Component;
 class Suplier extends Component
 {
     public $suplierUpdateStatus = false;
+
     protected $listeners = [
         'suplierUpdateStatus',
         'suplierUpdateStatusFalse',
-        'getSuplier' => 'data',
+        'getSuplier' => 'data'
     ];
 
     public function render()
@@ -18,11 +19,13 @@ class Suplier extends Component
         return view('livewire.suplier');
     }
 
-    public function suplierUpdateStatus(){
+    public function suplierUpdateStatus()
+    {
         $this->suplierUpdateStatus = true;
     }
 
-    public function suplierUpdateStatusFalse(){
+    public function suplierUpdateStatusFalse()
+    {
         $this->suplierUpdateStatus = false;
     }   
 

@@ -9,16 +9,19 @@ use Livewire\WithPagination;
 
 class SuplierList extends Component
 {
+    use WithPagination;
+
     public $suplierId;
     public $suplierUpdateStatus = false;
     public $perPage = 10;
+    public $search = '';
+    
+    protected $paginationTheme = 'bootstrap';
+
     protected $listeners = [
         'SuplierUpdated' => 'render',
         'SuplierStore' => 'render'
     ];
-    public $search = '';
-    use WithPagination;
-    protected $paginationTheme = 'bootstrap';
 
     public function render()
     {
@@ -32,27 +35,31 @@ class SuplierList extends Component
         $this->suplierId = $id;
     }
 
-    public function destroy(){
+    public function destroy()
+    {
         $suplier = Suplier::where('id', $this->suplierId)->first();
         $suplier->delete();
+
         $this->suplierId = NULL;
 
         $this->dispatchBrowserEvent('success', ['message'=>'Suplier berhasil dihapus !']);
-
         $this->emit('SuplierStore');
     }
 
-    public function getSuplier($id){
+    public function getSuplier($id)
+    {
         $this->emit('suplierUpdateStatus');
         $suplier = Suplier::find($id);
         $this->emit('getSuplier', $suplier);
     }
 
-    public function cancel(){
+    public function cancel()
+    {
         $this->suplierId = NULL;
     }
     
-    public function updatingSearch(){
+    public function updatingSearch()
+    {
         $this->resetPage();
     }
 }

@@ -11,9 +11,9 @@ class Inventory extends Model
 
     protected $guarded = ['id'];
 
-    // public function user(){
-    //     return $this->belongsTo(User::class);
-    // }
+    public function suplier(){
+        return $this->belongsTo(Suplier::class);
+    }
 
     public function submission(){
         return $this->hasMany(Submission::class);

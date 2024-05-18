@@ -8,7 +8,10 @@
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-fullname">Nama</label>
                     <input wire:model.defer="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama">
-
+                    <div class="form-check mt-3">
+                        <input class="form-check-input" wire:model.defer="role_as" type="checkbox">
+                        <label class="form-check-label" for="defaultCheck1"> Administrator </label>
+                    </div>
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

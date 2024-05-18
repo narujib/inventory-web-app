@@ -9,6 +9,7 @@ class PositionUpdate extends Component
 {
     public $positionId;
     public $name;
+    public $role_as;
 
     protected $listeners = [
         'dataPosition' => 'showPosition'
@@ -23,6 +24,7 @@ class PositionUpdate extends Component
     {
         $this->positionId = $position['id'];
         $this->name = $position['name'];
+        $this->role_as = $position['role_as'];
     }
 
     public function update()
@@ -34,10 +36,12 @@ class PositionUpdate extends Component
         if($this->positionId){
             $position = Position::find($this->positionId);
             $position->update([
-                'name' => $this->name
+                'name' => $this->name,
+                'role_as' => $this->role_as
             ]);
 
             $this->name = NULL;
+            $this->role_as = NULL;
 
             $this->dispatchBrowserEvent('success', ['message'=>'Jabatan berhasil diubah !']);
             $this->emit('PositionUpdated');
@@ -49,6 +53,7 @@ class PositionUpdate extends Component
 
     public function cancel(){
         $this->name = NULL;
+        $this->role_as = NULL;
         
         $this->emit('positionUpdateStatusFalse');
     }

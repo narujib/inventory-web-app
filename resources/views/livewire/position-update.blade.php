@@ -16,6 +16,10 @@
                         </span>
                     @enderror
                 </div>
+                <div class="form-check mt-3">
+                    <input class="form-check-input" wire:model.defer="role_as" type="checkbox">
+                    <label class="form-check-label" for="defaultCheck1"> Administrator </label>
+                </div>
                 <div class="mt-0">
                     <button type="submit" class="float-end btn btn-primary">Ubah</button>
                     <button type="reset" wire:click="cancel()" class="me-2 float-end btn btn-secondary">Batal</button>

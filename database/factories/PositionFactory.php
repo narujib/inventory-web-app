@@ -18,6 +18,7 @@ class PositionFactory extends Factory
     {
         return [
             'name' => $this->faker->unique->jobTitle(),
+            'role_as' => mt_rand(1,2),
         ];
     }
 }

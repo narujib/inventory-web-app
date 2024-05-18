@@ -92,7 +92,7 @@
             </ul>
         </li>
 
-        <li class="menu-item {{ Request::is('request', 'incoming') ? 'active open' : '' }}">
+        <li class="menu-item {{ Request::is('request', 'incoming', 'suplier') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-folder-open"></i>
             <div data-i18n="Inventory">Manajemen Barang</div>
@@ -101,7 +101,6 @@
                 <li class="menu-item {{ Request::is('suplier') ? 'active' : '' }}">
                     <a
                     href="{{ url('suplier') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-user-voice"></i>
                     <div data-i18n="Suplier">Suplier</div>
                     </a>
                 </li>

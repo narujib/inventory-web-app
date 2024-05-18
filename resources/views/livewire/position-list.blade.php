@@ -32,6 +32,7 @@
                     <tr>
                         <th>#</th>
                         <th>Nama</th>
+                        <th>Akses</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -41,6 +42,13 @@
                             <td>{{ $positions->firstItem() + $index }}</td>
                             <td>
                                 <span class="fw-medium">{{ $position->name }}</span>
+                            </td>
+                            <td>
+                                @if ($position->role_as)
+                                    <span class="badge rounded-pill bg-label-primary">Yes</span>
+                                @else
+                                    <span class="badge rounded-pill bg-label-secondary">No</span>
+                                @endif
                             </td>
                             <td>
                                 <div class="mt-0">

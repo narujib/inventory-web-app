@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->tinyInteger('role_as')->default('0')->comment('0=user,1=admin');
             $table->timestamps();
         });
     }

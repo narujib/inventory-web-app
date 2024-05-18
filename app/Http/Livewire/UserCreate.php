@@ -26,6 +26,7 @@ class UserCreate extends Component
         $this->validate([
             'name' => 'required|string|max:255',
             'position_id' => 'required|integer|max:99',
+            'role_as' => 'required|integer|max:99',
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|max:99'
         ]);

@@ -6,7 +6,7 @@
             <div class="modal-body d-flex justify-content-center mt-4 align-items-center ">
                 <span class="text-primary">
                     <i class="float-center bx bx-info-circle bx-lg"></i>
-                        <span class="h5 text-muted">Update status A?</span>
+                        <span class="h5 text-muted">Update status?</span>
                 </span>
             </div>
             <form wire:submit.prevent="update">

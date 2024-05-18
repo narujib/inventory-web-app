@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Suplier;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\WithPagination;
 
 
@@ -51,6 +52,19 @@ class SuplierList extends Component
         $this->emit('suplierUpdateStatus');
         $suplier = Suplier::find($id);
         $this->emit('getSuplier', $suplier);
+    }
+
+    public function generatePdf()
+    {
+        $data = [
+            'supliers' => Suplier::all()
+        ];
+
+        $pdf = Pdf::loadView('supliers-pdf', $data);
+
+        return response()->streamDownload(function() use($pdf){
+            echo $pdf->stream();
+        }, 'supliers.pdf');
     }
 
     public function cancel()

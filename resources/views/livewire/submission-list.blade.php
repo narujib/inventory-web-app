@@ -133,7 +133,7 @@
                 <button type="reset" wire:click="cancel()" class="btn btn-outline-secondary float-end" data-bs-dismiss="modal">
                 Batal
                 </button>
-                <button type="button" data-bs-dismiss="modal" wire:click="destroy()" class="btn btn-primary">Hapus</button>
+                <button type="button" data-bs-dismiss="modal" wire:click="destroy()" wire:loading.attr="disabled" class="btn btn-primary">Hapus</button>
             </div>
             </div>
         </div>

@@ -4,15 +4,18 @@
             <h5 class="mb-0">Suplier</h5>
 
             <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                        <i class="bx bx-printer bx-sm bx-border cursor-pointer me-3"></i>
-                            <select wire:model.live="perPage" class="form-select">
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                            </select>
-                    </div>
+                
+                <div class="d-flex align-items-center">
+                    <select wire:model.live="perPage" class="me-3 form-select">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                    <button wire:click="generatePdf" type="button" class="btn btn-icon btn-secondary">
+                        <span class="bx bx-printer bx-sm cursor-pointer"></span>
+                    </button>
                 </div>
+            </div>
         </div>     
         
         <div class="input-group input-group-merge px-4 mb-3">

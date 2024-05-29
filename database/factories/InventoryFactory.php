@@ -26,7 +26,7 @@ class InventoryFactory extends Factory
 
         // return [
         //     'name' => $this->faker->jobTitle(),
-        //     'kode_barang' => 'BR'. $this->faker->unique->randomNumber(5, true),
+        //     'kode_barang' => 'BR'. $this->faker->unique->randomNumber(6, true),
         //     'jumlah' => mt_rand(50, 200),
         //     'keterangan' => $this->faker->paragraph(2),
         //     'jenis' => mt_rand(1, 3),

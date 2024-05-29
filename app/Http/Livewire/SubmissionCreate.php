@@ -41,7 +41,7 @@ class SubmissionCreate extends Component
 
     public function store(){        
         $this->validate();
-        $uID = IdGenerator::generate(['table' => 'submissions', 'field' => 'kode_permintaan', 'length' => 5, 'prefix' => 'PR']);
+        $uID = IdGenerator::generate(['table' => 'submissions', 'field' => 'kode_permintaan', 'length' => 8, 'prefix' => 'PR']);
 
         $inventory = new Inventory();
 

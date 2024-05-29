@@ -11,7 +11,7 @@
             </div>
             <form wire:submit.prevent="update">
                 @csrf
-                <input type="hidden" name="" wire:model.defer="requestId">
+                <input type="hidden" wire:model.defer="requestId">
                 <div class="modal-footer d-flex justify-content-between align-items-center">
 
                     <button wire:loading wire:loading.attr="disabled" class="btn btn-outline-secondary float-end" data-bs-dismiss="modal">

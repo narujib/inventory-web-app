@@ -14,6 +14,7 @@ class SubmissionList extends Component
     use WithPagination;
 
     public $submissionId;
+    // public $user_id;
     public $submissionUpdateStatus = false;
     
     public $perPage = 5;
@@ -27,6 +28,11 @@ class SubmissionList extends Component
         'SubmissionUpdated' => 'render',
         'SubmissionStore' => 'render'
     ];
+
+    public function mount()
+    {
+        $this->filterPageUser = auth()->id();
+    }
 
     public function render()
     {

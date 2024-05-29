@@ -7,7 +7,7 @@
                 @csrf
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-fullname">Nama</label>
-                    <input wire:model.defer="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama">
+                    <input wire:model.defer="name" type="text" class="form-control  @error('name') is-invalid @enderror" placeholder="Nama">
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

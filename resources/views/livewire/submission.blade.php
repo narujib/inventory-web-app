@@ -1,9 +1,8 @@
 <div>
         @if ($submissionUpdateStatus)
-                @livewire('submission-update')            
+        @livewire('submission-update')
         @else
-                @livewire('submission-create')            
+                @livewire('submission-create')
         @endif
         @livewire('submission-list')
-
 </div>

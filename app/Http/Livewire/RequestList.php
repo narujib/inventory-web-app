@@ -41,7 +41,7 @@ class RequestList extends Component
                 $query->where('status', $this->filterPageStatus);
             })
             ->orderBy('updated_at', 'desc')
-            ->paginate($this->perPage)
+            ->paginate($this->perPage)->onEachSide(1)
         ]);
     }
 
@@ -64,6 +64,26 @@ class RequestList extends Component
     }
 
     public function updatingSearch(){
+        $this->resetPage();
+    }
+
+    public function updatingperPage()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingfilterPageStatus()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingfilterPageUser()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingfilterPageJenis()
+    {
         $this->resetPage();
     }
 }

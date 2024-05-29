@@ -50,10 +50,10 @@ class DatabaseSeeder extends Seeder
         User::factory(50)->create();
         Suplier::factory(50)->create();
 
-        Inventory::factory(20)->create();
-        Submission::factory(20)->create();
+        Inventory::factory(50)->create();
+        Submission::factory(50)->create();
         
-        // Inventory::factory(50)->create();        
-        // Submission::factory(25)->create();
+        // Inventory::factory(1000)->create();
+        // Submission::factory(500)->create();
     }
 }

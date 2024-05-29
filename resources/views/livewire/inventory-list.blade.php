@@ -24,7 +24,7 @@
         </div>
 
         <div class="card-header d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
-            <div class="col-md-4">
+            {{-- <div class="col-md-4">
                 <select class="form-select" wire:model.live="filterPageStatus" aria-label="Default select example">
                     <option selected value="">
                         --All Status--
@@ -39,15 +39,15 @@
                         Selesai
                     </option>
                 </select>
-            </div>
-            <div class="col-md-4">
+            </div> --}}
+            {{-- <div class="col-md-4">
                 <select wire:model.live="filterPageUser" class="form-select text-capitalize">
                     <option value="">--All User--</option>
                     @foreach ($users as $data)
                         <option value="{{ $data->id }}">{{ $data->name }}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
             <div class="col-md-4">
                 <select wire:model.live="filterPageJenis" class="form-select text-capitalize">
                     <option selected value="">
@@ -73,6 +73,12 @@
 
         <div class="table-responsive text-nowrap">
             <table class="table table-hover">
+                <caption class="ms-4">
+                    <div class="d-flex align-items-center justify-content-center">
+                        
+                        <small>{{ $inventories->links() }}</small>
+                    </div>
+                </caption>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -86,35 +92,35 @@
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @forelse ($submissions as $index => $submission)                        
+                    @forelse ($inventories as $index => $data)                        
                         <tr>
-                            <td>{{ $submissions->firstItem() + $index }}</td>
+                            <td>{{ $inventories->firstItem() + $index }}</td>
                             <td>
-                                <i>{{ $submission->kode_permintaan }} -</i>
-                                <span class="fw-medium">{{ $submission->inventory->name }}</span>
+                                <i>{{ $data->kode_barang }} -</i>
+                                <span class="fw-medium">{{ $data->name }}</span>
                             </td>
                             <td>
-                                <span class="fw-medium">{{ $submission->inventory->jumlah }}</span>
+                                <span class="fw-medium">{{ $data->jumlah }}</span>
                             </td>
                             <td>
-                                @if ( $submission->inventory->jenis == '1' )
+                                @if ( $data->jenis == '1' )
                                     <span class="badge rounded-pill bg-label-primary">Sarana</span>
-                                @elseif( $submission->inventory->jenis == '2' )
+                                @elseif( $data->jenis == '2' )
                                     <span class="badge rounded-pill bg-label-success">Prasarana</span>
-                                @elseif ($submission->inventory->jenis == '3')
+                                @elseif ($data->jenis == '3')
                                     <span class="badge rounded-pill bg-label-info">Lainnya</span>
                                 @else
                                     <span class="badge rounded-pill bg-label-secondary">nothing</span>
                                 @endif
                             </td>
                             <td>
-                                <span class="fw-medium">{{ $submission->user->name }}</span>
+                                {{-- <span class="fw-medium">{{ $submission->user->name }}</span> --}}
                             </td>
                             <td>
-                                <span class="fw-medium">{{ $submission->inventory->keterangan }}</span>
+                                <span class="fw-medium">{{ $data->keterangan }}</span>
                             </td>
                             <td>                                
-                                @if ( $submission->status == '1' )
+                                {{-- @if ( $submission->status == '1' )
                                     <span class="badge bg-warning">pending</span>
                                 @elseif ( $submission->status == '2' ) 
                                     <span class="badge bg-info">diproses</span>
@@ -122,7 +128,7 @@
                                     <span class="badge bg-success">selesai</span>
                                 @else
                                     <span class="badge bg-secondary">nothing</span>
-                                @endif
+                                @endif --}}
                             </td>
                             <td>
                                 <div class="mt-0">
@@ -131,7 +137,7 @@
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu px-2 mx-auto">
-                                            <div class="mx-auto mt-0">
+                                            {{-- <div class="mx-auto mt-0">
                                                 <button class="btn mt-2 btn-sm btn-outline-secondary w-100"  data-bs-toggle="modal" data-bs-target="#backDropModalP" wire:click="getSubmissionP({{ $submission->id }})">Pending</button>
                                             </div>
                                             <div class="mx-auto">
@@ -140,7 +146,7 @@
 
                                             <div class="mx-auto">
                                                 <button class="btn mt-2 btn-sm btn-outline-secondary w-100"  data-bs-toggle="modal" data-bs-target="#backDropModalS" wire:click="getSubmissionS({{ $submission->id }})">Selesai</button>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -158,11 +164,6 @@
                 </tbody>
             </table>
         </div>
-        <caption >
-            <div class="mt-3 d-flex align-items-center justify-content-center">
-                <small class="pagination-sm">{{ $submissions->links() }}</small>
-            </div>
-        </caption>
     </div>
 
     @livewire('acc-status')

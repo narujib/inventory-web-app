@@ -5,10 +5,10 @@
         <div class="card-body">
             <form wire:submit.prevent="update">
                 @csrf
-                <input type="hidden" name="" wire:model.defer="positionId">
+                <input type="hidden" wire:model.defer="positionId">
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-fullname">Nama</label>
-                    <input wire:model.defer="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama">
+                    <input wire:model.defer="name" type="text" class="form-control  @error('name') is-invalid @enderror" placeholder="Nama">
 
                     @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -17,7 +17,7 @@
                     @enderror
                 </div>
                 <div class="form-check mt-3">
-                    <input checked class="form-check-input" wire:model.defer="role_as" id="role_as" name="role_as" type="checkbox">
+                    <input checked class="form-check-input" wire:model.defer="role_as" type="checkbox">
                     <label class="form-check-label" for="defaultCheck1"> Administrator </label>
                 </div>
                 <div class="mt-0">

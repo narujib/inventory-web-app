@@ -5,27 +5,11 @@
             <script>
             document.write(new Date().getFullYear());
             </script>
-            , dibuat dengan ❤️ untuk tugas akhir 
-            {{-- <a href="https://themeselection.com" target="_blank" class="footer-link fw-medium">ThemeSelection</a> --}}
+            , dibuat dengan ❤️ untuk
+            <span class="footer-link fw-medium">Tugas Akhir</span>
         </div>
         <div class="d-none d-lg-inline-block">
-            <span>Universitas Nahdlatul Ulama Indonesia</span>
-            {{-- <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-            <a
-            href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
-            target="_blank"
-            class="footer-link me-4"
-            >Documentation</a
-            >
-
-            <a
-            href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-            target="_blank"
-            class="footer-link"
-            >Support</a
-            > --}}
+            <a href="https://pmb.unusia.ac.id/home" target="_blank" class="footer-link">Universitas Nahdlatul Ulama Indonesia</a>
         </div>
     </div>
 </footer>

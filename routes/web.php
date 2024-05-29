@@ -26,7 +26,8 @@ Auth::routes([
 Route::middleware(['auth'])->group(function (){    
     Route::get('/submission', [App\Http\Controllers\SubmissionController::class, 'index']);
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index']);
-    Route::get('/change-password', [App\Http\Controllers\ChangePasswordController::class, 'index']);
+    Route::get('/edit-profile', [App\Http\Controllers\EditProfileController::class, 'index']);
+    Route::get('/edit-password', [App\Http\Controllers\ChangePasswordController::class, 'index']);
 });
 
 Route::middleware(['auth', 'rolePermision'])->group(function (){

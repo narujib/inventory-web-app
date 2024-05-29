@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="basic-default-fullname">Nama</label>
-                        <input wire:model.defer="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama">
+                        <input wire:model.defer="name" type="text" class="form-control  @error('name') is-invalid @enderror" placeholder="Nama">
 
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="basic-default-fullname">Jumlah</label>
-                        <input wire:model.defer="jumlah" type="number" min="1" class="form-control  @error('jumlah') is-invalid @enderror" id="jumlah" name="jumlah" placeholder="Jumlah">
+                        <input wire:model.defer="jumlah" type="number" min="1" class="form-control  @error('jumlah') is-invalid @enderror" placeholder="Jumlah">
 
                         @error('jumlah')
                             <span class="invalid-feedback" role="alert">
@@ -30,7 +30,7 @@
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="basic-default-fullname">Jenis</label>
 
-                        <select id="jenis" wire:model.defer="jenis" name="jenis" class="form-select @error('jenis') is-invalid @enderror">
+                        <select wire:model.defer="jenis" class="form-select @error('jenis') is-invalid @enderror">
                             <option>---Pilih jenis---</option>
                             <option value="1">Sarana</option>
                             <option value="2">Prasarana</option>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="basic-default-fullname">Keterangan</label>
-                        <textarea wire:model.defer="keterangan" id="keterangan" name="keterangan" class="form-control     @error('keterangan') is-invalid @enderror" placeholder="Keterangan"></textarea>
+                        <textarea wire:model.defer="keterangan" class="form-control @error('keterangan') is-invalid @enderror" placeholder="Keterangan"></textarea>
 
                         @error('keterangan')
                             <span class="invalid-feedback" role="alert">

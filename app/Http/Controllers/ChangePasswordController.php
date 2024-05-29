@@ -8,6 +8,6 @@ class ChangePasswordController extends Controller
 {
     public function index()
     {
-        return view('change-password');
+        return view('edit-password');
     }
 }

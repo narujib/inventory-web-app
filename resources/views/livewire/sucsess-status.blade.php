@@ -4,7 +4,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Tambahkan barang ke inventory {{ $kode_permintaan }}</h5>
+                    <h5 class="modal-title">Tambahkan barang ke inventory {{ $kode_permintaan }}</h5>
                 </div>
                 <form wire:submit.prevent="update">
                     @csrf
@@ -12,7 +12,7 @@
                         <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="basic-default-fullname">Nama</label>
-                                <input disabled wire:model.defer="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama">
+                                <input disabled wire:model.defer="name" type="text" class="form-control  @error('name') is-invalid @enderror" placeholder="Nama">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -22,7 +22,7 @@
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="basic-default-fullname">Jumlah</label>
-                                <input wire:model.defer="jumlah" type="number" class="form-control  @error('jumlah') is-invalid @enderror" id="jumlah" name="jumlah" placeholder="Jumlah">
+                                <input wire:model.defer="jumlah" type="number" class="form-control  @error('jumlah') is-invalid @enderror" placeholder="Jumlah">
 
                                 @error('jumlah')
                                     <span class="invalid-feedback" role="alert">
@@ -34,7 +34,7 @@
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="basic-default-fullname">Jenis</label>
 
-                                <select id="jenis" wire:model.defer="jenis" name="jenis" class="form-select @error('jenis') is-invalid @enderror">
+                                <select wire:model.defer="jenis" class="form-select @error('jenis') is-invalid @enderror">
                                     <option>---Pilih jenis---</option>
                                     <option value="1">Sarana</option>
                                     <option value="2">Prasarana</option>
@@ -50,7 +50,7 @@
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="basic-default-fullname">Suplier</label>
 
-                                <select id="suplier_id" wire:model.defer="suplier_id" name="suplier_id" class="form-select @error('suplier_id') is-invalid @enderror">
+                                <select wire:model.defer="suplier_id" class="form-select @error('suplier_id') is-invalid @enderror">
                                     <option>---Pilih suplier---</option>
                                     @foreach ($supliers as $suplier)
                                         <option value="{{ $suplier->id }}">{{ $suplier->name }}</option>
@@ -65,7 +65,7 @@
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="basic-default-fullname">Lokasi</label>
-                                <input type="text" wire:model.defer="lokasi" id="lokasi" name="lokasi" class="form-control     @error('lokasi') is-invalid @enderror" placeholder="Lokasi"></input>
+                                <input type="text" wire:model.defer="lokasi" class="form-control @error('lokasi') is-invalid @enderror" placeholder="Lokasi"></input>
 
                                 @error('lokasi')
                                     <span class="invalid-feedback" role="alert">
@@ -75,7 +75,7 @@
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="basic-default-fullname">Keterangan</label>
-                                <textarea wire:model.defer="keterangan" id="keterangan" name="keterangan" class="form-control     @error('keterangan') is-invalid @enderror" placeholder="Keterangan"></textarea>
+                                <textarea wire:model.defer="keterangan" class="form-control     @error('keterangan') is-invalid @enderror" placeholder="Keterangan"></textarea>
 
                                 @error('keterangan')
                                     <span class="invalid-feedback" role="alert">

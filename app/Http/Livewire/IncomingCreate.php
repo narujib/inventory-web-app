@@ -38,7 +38,7 @@ class IncomingCreate extends Component
     public function store()
     {        
         $this->validate();
-        $uID = IdGenerator::generate(['table' => 'inventories', 'field' => 'kode_barang', 'length' => 5, 'prefix' => 'BR']);
+        $uID = IdGenerator::generate(['table' => 'inventories', 'field' => 'kode_barang', 'length' => 8, 'prefix' => 'BR']);
 
         $inventory = new Inventory();
         $inventory->name = $this->name;

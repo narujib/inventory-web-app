@@ -29,8 +29,16 @@ class UserList extends Component
     public function render()
     {
         return view('livewire.user-list',[
-            'users' => User::orderBy('id','desc')->where('name','like','%'.$this->search.'%')->paginate($this->perPage)
-        ]);
+            'users' => User::orderBy('users.id', 'desc')
+                ->join('positions', 'users.position_id', '=', 'positions.id')
+                ->where(function ($query) {
+                    $query->where('users.name', 'like', '%' . $this->search . '%')
+                    ->orWhere('users.email', 'like', '%' . $this->search . '%')
+                    ->orWhere('positions.name', 'like', '%' . $this->search . '%');
+                })
+                ->select('users.*', 'positions.name as position_name')
+                ->paginate($this->perPage)
+            ]);
     }
 
     public function getUser($id)
@@ -65,6 +73,11 @@ class UserList extends Component
     }
 
     public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingperPage()
     {
         $this->resetPage();
     }

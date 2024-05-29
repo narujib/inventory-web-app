@@ -32,7 +32,7 @@ class LoginController extends Controller
 
     protected function authenticated()
     {
-        if(Auth::user()->position->role_as == '0'){
+        if(Auth::user()->position->role_as == '1'){
             return redirect('/dashboard')->with('status', 'Selamat datang !');
         }else{
             return redirect('/submission')->with('status', 'Login berhasil !');

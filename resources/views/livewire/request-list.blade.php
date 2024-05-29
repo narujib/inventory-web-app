@@ -1,51 +1,67 @@
+@push('scripts')
+    <script src="{{ asset('scripts/script.js') }}"></script>
+@endpush
+
 <div class="col-xl">
+
+    @livewire('widget-request')
+
     <div class="card mb-3">
         <div class="card-header d-flex align-items-center justify-content-between">
             <h5 class="mb-0">Permintaan</h5>
-
-            {{-- <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
                     <i class="bx bx-printer bx-sm bx-border cursor-pointer me-3"></i>
-                    <select wire:model.live="perPage" id="defaultSelect" class="form-select">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                    </select>
-                </div>
-            </div> --}}
-        </div>     
-
-        <div class="mx-4 mb-3 d-flex align-items-center justify-content-between">
-            <div class="d-flex justify-content-between align-items-center">
-
-                <div class="d-flex align-items-center  me-3">
-                    <select class="form-select" wire:model.live="filterPage" id="exampleFormControlSelect1" aria-label="Default select example">
-                        {{-- <option selected="">--Filter--</option> --}}
-                        <option selected value="">
-                            --All status--
-                        </option>
-                        <option value="1">
-                            Pending
-                        </option>
-                        <option value="2">
-                            Diproses
-                        </option>
-                        <option value="3">
-                            Selesai
-                        </option>
-                    </select>
-                </div>
-                <div class="d-flex align-items-center">
-                    <select wire:model.live="perPage" id="defaultSelect" class="form-select">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                    </select>
+                        <select wire:model.live="perPage" class="form-select">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
                 </div>
             </div>
-
-            <i class="bx bx-printer bx-sm bx-border cursor-pointer"></i>
-        </div>     
+        </div>
+        <div class="card-header d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
+            <div class="col-md-4">
+                <select class="form-select" wire:model.live="filterPageStatus" id="exampleFormControlSelect1" aria-label="Default select example">
+                    <option selected value="">
+                        --All Status--
+                    </option>
+                    <option value="1">
+                        Pending
+                    </option>
+                    <option value="2">
+                        Diproses
+                    </option>
+                    <option value="3">
+                        Selesai
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <select id="UserRole"  wire:model.live="filterPageUser" class="form-select text-capitalize">
+                    <option value="">--All User--</option>
+                    @foreach ($users as $data)
+                        <option value="{{ $data->id }}">{{ $data->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-4">
+                <select id="UserRole"  wire:model.live="filterPageJenis" class="form-select text-capitalize">
+                    <option selected value="">
+                        --All Jenis--
+                    </option>
+                    <option value="1">
+                        Sarana
+                    </option>
+                    <option value="2">
+                        Prasarana
+                    </option>
+                    <option value="3">
+                        Lainnya
+                    </option>
+                </select>
+            </div>
+        </div>
         
         <div class="input-group input-group-merge px-4 mb-3">
             <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
@@ -73,7 +89,7 @@
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @foreach ($submissions as $index => $submission)                        
+                    @forelse ($submissions as $index => $submission)                        
                         <tr>
                             <td>{{ $submissions->firstItem() + $index }}</td>
                             <td>
@@ -133,7 +149,15 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="8" class="text-center">
+                                <h4 class="text-muted my-3">
+                                Tidak ada data ditemukan !
+                                </h4>
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

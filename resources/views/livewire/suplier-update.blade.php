@@ -1,4 +1,4 @@
-<div class="col-xl">
+<div class="col-xl" id="suplier">
     <div class="card mb-3">
         <h5 class="card-header">Ubah data suplier</h5>
 
@@ -46,8 +46,21 @@
                 @enderror
                 </div>
                 <div class="mt-0">
-                    <button type="submit" class="float-end btn btn-primary">Ubah</button>
-                    <button type="reset" wire:click="cancel()" class="me-2 float-end btn btn-secondary">Batal</button>
+                    <button wire:loading wire:loading.attr="disabled" type="submit" class="float-end btn btn-primary">
+                        <span class="spinner-border spinner-border-sm text-white mx-3" role="status"></span>
+                    </button>
+                    <button wire:loading.remove type="submit" class="float-end btn btn-primary">
+                        <span>Ubah</span>
+                    </button>
+
+                    <button wire:loading wire:loading.attr="disabled" class="me-2 float-end btn btn-secondary">
+                        <span class="spinner-border spinner-border-sm text-white mx-3" role="status"></span>
+                    </button>
+                    <div  wire:loading.remove>
+                        <button type="reset" wire:click="cancel()" class="me-2 float-end btn btn-secondary">
+                            <span>Batal</span>
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

@@ -73,6 +73,8 @@
             <span class="menu-header-text">Apps &amp; Pages</span>
         </li>
 
+@if (   Auth::user()->position->role_as == 1   )
+    
         <li class="menu-item {{ Request::is('user-management', 'position') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-user"></i>
@@ -116,8 +118,10 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item {{ Request::is('inventaris') ? 'active' : '' }}">
-            <a href="pages-account-settings-account.html" class="menu-link">
+@endif
+
+        <li class="menu-item {{ Request::is('inventory') ? 'active' : '' }}">
+            <a href="{{ url('inventory') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-user-voice"></i>
             <div data-i18n="Account">Inventaris</div>
             </a>
@@ -134,10 +138,10 @@
         <!-- Components -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
         <!-- Cards -->
-        <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
+        <li class="menu-item {{ Request::is('profile') ? 'active' : '' }}">
+            <a href="{{ url('profile') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-collection"></i>
-            <div data-i18n="Basic">Cards</div>
+            <div data-i18n="Basic">Profile</div>
             </a>
         </li>
 

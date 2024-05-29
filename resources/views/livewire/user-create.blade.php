@@ -35,13 +35,16 @@
                         </span>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <label class="form-label" for="password_confirmation">Password Confirm</label>
+                    <input wire:model.defer="password_confirmation" type="password" name="password_confirmation"  class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation"  placeholder="password confirmation">
 
-                    {{-- <div class="col-sm-6">
-                        <div class="mb-1">
-                            <label class="form-label" for="password-confirm">Confirm Password</label>
-                            <input type="password" class="form-control" id="password-confirm" placeholder="Confirm password">
-                        </div>
-                    </div> --}}
+                    @error('password_confirmation')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-company">Jabatan</label>
@@ -62,7 +65,12 @@
 
                 <div class="row justify-content-end">
                     <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary float-end">Tambahkan</button>
+                        <button wire:loading wire:loading.attr="disabled"  type="submit" class="btn btn-primary float-end">
+                            <span class="spinner-border spinner-border-sm text-white mx-4" role="status"></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-10">
+                        <button wire:loading.remove type="submit" class="btn btn-primary float-end">Tambahkan</button>
                     </div>
                 </div>
             </form>

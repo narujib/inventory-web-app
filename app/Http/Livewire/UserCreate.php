@@ -12,6 +12,7 @@ class UserCreate extends Component
     public $email;
     public $name;
     public $password;
+    public $password_confirmation;
     public $position_id;
 
     public function render()
@@ -26,9 +27,9 @@ class UserCreate extends Component
         $this->validate([
             'name' => 'required|string|max:255',
             'position_id' => 'required|integer|max:99',
-            'role_as' => 'required|integer|max:99',
             'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'required|string|max:99'
+            'password' => 'required|string|max:99|min:3|confirmed',
+            'password_confirmation' => 'required|string'
         ]);
 
         User::Create([
@@ -42,6 +43,7 @@ class UserCreate extends Component
         $this->email = NULL;
         $this->position_id = NULL;
         $this->password = NULL;
+        $this->password_confirmation = NULL;
 
         $this->dispatchBrowserEvent('success', ['message'=>'Pengguna berhasil ditambahkan !']);
         $this->emit('UserStore');

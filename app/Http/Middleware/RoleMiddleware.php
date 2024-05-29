@@ -19,7 +19,7 @@ class RoleMiddleware
     {
         // $user = Auth::user();
 
-        if(!Auth::user()->position->role_as == '0'){
+        if(!Auth::user()->position->role_as == '1'){
             return redirect('/submission')->with('message', 'Anda tidak memiliki akses !');
         }
 

@@ -23,7 +23,7 @@ class IncomingCreate extends Component
         'kode_barang' => 'nullable|string|max:255|unique:inventories,kode_barang',
         'suplier_id' => 'required|integer',
         'lokasi' => 'required|string|max:255',
-        'jumlah' => 'required|integer|max:9999',
+        'jumlah' => 'required|integer|max:9999|min:1',
         'keterangan' => 'nullable|string|max:255',
         'jenis' => 'required|integer|max:99',
     ];

@@ -48,7 +48,7 @@ class SubmissionUpdate extends Component
     {
         $this->validate([
             'name' => 'required|string|max:255',
-            'jumlah' => 'required|integer|max:9999',
+            'jumlah' => 'required|integer|max:9999|min:1',
             'jenis' => 'required|integer|max:99',
             'keterangan' => 'nullable|max:255'
         ]);      

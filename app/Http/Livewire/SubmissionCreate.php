@@ -24,7 +24,7 @@ class SubmissionCreate extends Component
     protected $rules = [
         'name' => 'required|string|max:255',
         'kode_barang' => 'nullable|string|max:255||unique:inventories,kode_barang',
-        'jumlah' => 'required|integer|max:9999',
+        'jumlah' => 'required|integer|max:9999|min:1',
         'keterangan' => 'nullable|string|max:255',
         'jenis' => 'required|integer|max:99',
 

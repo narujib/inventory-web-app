@@ -2,9 +2,6 @@
     <div class="card mb-3">
         <h5 class="card-header">
             Ajukan
-            <div class=" spinner-border spinner-border-sm" wire:loading role="status">
-                <span class="visually-hidden"></span>
-            </div>
         </h5>
         <div class="card-body">
             <form wire:submit.prevent="store">
@@ -22,7 +19,7 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="basic-default-fullname">Jumlah</label>
-                        <input wire:model.defer="jumlah" type="number" class="form-control  @error('jumlah') is-invalid @enderror" id="jumlah" name="jumlah" placeholder="Jumlah">
+                        <input wire:model.defer="jumlah" type="number" min="1" class="form-control  @error('jumlah') is-invalid @enderror" id="jumlah" name="jumlah" placeholder="Jumlah">
 
                         @error('jumlah')
                             <span class="invalid-feedback" role="alert">
@@ -57,7 +54,13 @@
                         @enderror
                     </div>
                 </div>
-                <button type="submit" class="float-end btn btn-primary">Tambahkan</button>
+
+                <button type="submit" wire:loading wire:loading.attr="disabled" class="float-end btn btn-primary">
+                    <span class="spinner-border spinner-border-sm text-white mx-4" role="status"></span>
+                </button>
+                <button wire:loading.remove type="submit" class="float-end btn btn-primary">
+                    <span>Tambahkan</span>
+                </button>
             </form>
         </div>
     </div>

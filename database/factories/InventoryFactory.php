@@ -16,20 +16,20 @@ class InventoryFactory extends Factory
      */
     public function definition()
     {
-        // return [
-        //     'name' => $this->faker->jobTitle(),
-        //     'kode_barang' => null,
-        //     'jumlah' => mt_rand(50, 200),
-        //     'keterangan' => $this->faker->paragraph(2),
-        //     'jenis' => mt_rand(1, 3),
-        // ];
-
         return [
             'name' => $this->faker->jobTitle(),
-            'kode_barang' => 'BR'. $this->faker->unique->randomNumber(5, true),
+            'kode_barang' => null,
             'jumlah' => mt_rand(50, 200),
             'keterangan' => $this->faker->paragraph(2),
             'jenis' => mt_rand(1, 3),
         ];
+
+        // return [
+        //     'name' => $this->faker->jobTitle(),
+        //     'kode_barang' => 'BR'. $this->faker->unique->randomNumber(5, true),
+        //     'jumlah' => mt_rand(50, 200),
+        //     'keterangan' => $this->faker->paragraph(2),
+        //     'jenis' => mt_rand(1, 3),
+        // ];
     }
 }

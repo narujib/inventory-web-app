@@ -44,7 +44,12 @@
                     </span>
                 @enderror
                 </div>
-                <button type="submit" class="float-end btn btn-primary">Tambahkan</button>
+                <button type="submit" wire:loading wire:loading.attr="disabled" class="float-end btn btn-primary">
+                    <span class="spinner-border spinner-border-sm text-white mx-4" role="status"></span>
+                </button>
+                <button wire:loading.remove type="submit" class="float-end btn btn-primary">
+                    <span>Tambahkan</span>
+                </button>
             </form>
         </div>
     </div>

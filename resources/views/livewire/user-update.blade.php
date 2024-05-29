@@ -1,4 +1,4 @@
-<div class="col-xl">
+<div class="col-xl" id="user">
     <div class="card mb-3">
         <h5 class="card-header">Ubah Pengguna</h5>
 
@@ -26,23 +26,30 @@
                         </span>
                     @enderror
                 </div>
-                {{-- <div class="mb-3">
+                <div class="mb-3">
                     <label class="form-label" for="password">Password</label>
                     <input wire:model.defer="password" type="password" name="password"  class="form-control @error('password') is-invalid @enderror" id="password"  placeholder="password">
+
+                    <div id="defaultFormControlHelp" class="form-text">
+                        Kosongkan jika tidak ingin dirubah
+                    </div>
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div> --}}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="password_confirmation">Password Confirm</label>
+                    <input wire:model.defer="password_confirmation" type="password" name="password_confirmation"  class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation"  placeholder="password confirmation">
 
-                    {{-- <div class="col-sm-6">
-                        <div class="mb-1">
-                            <label class="form-label" for="password-confirm">Confirm Password</label>
-                            <input type="password" class="form-control" id="password-confirm" placeholder="Confirm password">
-                        </div>
-                    </div> --}}
+                    @error('password_confirmation')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-company">Jabatan</label>
@@ -62,9 +69,24 @@
                 </div>
 
                 <div class="mt-0">
-                    <button type="submit" class="float-end btn btn-primary">Ubah</button>
-                    <button type="reset" wire:click="cancel()" class="me-2 float-end btn btn-secondary">Batal</button>
+                    <button wire:loading wire:loading.attr="disabled" type="submit" class="float-end btn btn-primary">
+                        <span class="spinner-border spinner-border-sm text-white mx-3" role="status"></span>
+                    </button>
+                    <button wire:loading.remove type="submit" class="float-end btn btn-primary">
+                        <span>Ubah</span>
+                    </button>
+
+                    <button wire:loading wire:loading.attr="disabled" class="me-2 float-end btn btn-secondary">
+                        <span class="spinner-border spinner-border-sm text-white mx-3" role="status"></span>
+                    </button>
+                    <div  wire:loading.remove>
+                        <button type="reset" wire:click="cancel()" class="me-2 float-end btn btn-secondary">
+                            <span>Batal</span>
+                        </button>
+                    </div>
+
                 </div>
+
             </form>
         </div>
     </div>

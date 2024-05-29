@@ -1,9 +1,6 @@
-<div class="col-xl">
+<div class="col-xl" id="submission">
     <div class="card mb-3">
         <h5 class="card-header">Ubah pengajuan
-            <div class=" spinner-border spinner-border-sm" wire:loading role="status">
-                <span class="visually-hidden"></span>
-            </div>
         </h5>
 
         <div class="card-body">
@@ -23,7 +20,7 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="basic-default-fullname">Jumlah</label>
-                        <input wire:model.defer="jumlah" type="number" class="form-control  @error('jumlah') is-invalid @enderror" id="jumlah" name="jumlah" placeholder="Jumlah">
+                        <input wire:model.defer="jumlah" type="number" min="1" class="form-control  @error('jumlah') is-invalid @enderror" id="jumlah" name="jumlah" placeholder="Jumlah">
 
                         @error('jumlah')
                             <span class="invalid-feedback" role="alert">
@@ -59,8 +56,22 @@
                     </div>
                 </div>
                 <div class="mt-0">
-                    <button type="submit" class="float-end btn btn-primary" wire:loading.attr="disabled">Ubah</button>
-                    <button type="reset" wire:click="cancel()" class="me-2 float-end btn btn-secondary">Batal</button>
+
+                    <button wire:loading wire:loading.attr="disabled" type="submit" class="float-end btn btn-primary">
+                        <span class="spinner-border spinner-border-sm text-white mx-3" role="status"></span>
+                    </button>
+                    <button wire:loading.remove class="float-end btn btn-primary">
+                        <span>Ubah</span>
+                    </button>
+
+                    <button wire:loading wire:loading.attr="disabled" class="me-2 float-end btn btn-secondary">
+                        <span class="spinner-border spinner-border-sm text-white mx-3" role="status"></span>
+                    </button>
+                    <div  wire:loading.remove>
+                        <button type="reset" wire:click="cancel()" class="me-2 float-end btn btn-secondary">
+                            <span>Batal</span>
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

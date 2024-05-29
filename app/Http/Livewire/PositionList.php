@@ -66,6 +66,11 @@ class PositionList extends Component
         $this->positionId = NULL;
     }
 
+    public function updatingperPage()
+    {
+        $this->resetPage();
+    }
+
     public function updatingSearch()
     {
         $this->resetPage();

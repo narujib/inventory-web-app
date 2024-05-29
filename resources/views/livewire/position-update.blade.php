@@ -1,4 +1,4 @@
-<div class="col-xl">
+<div class="col-xl" id="position">
     <div class="card mb-3">
         <h5 class="card-header">Ubah jabatan</h5>        
 
@@ -17,12 +17,26 @@
                     @enderror
                 </div>
                 <div class="form-check mt-3">
-                    <input class="form-check-input" wire:model.defer="role_as" type="checkbox">
+                    <input checked class="form-check-input" wire:model.defer="role_as" id="role_as" name="role_as" type="checkbox">
                     <label class="form-check-label" for="defaultCheck1"> Administrator </label>
                 </div>
                 <div class="mt-0">
-                    <button type="submit" class="float-end btn btn-primary">Ubah</button>
-                    <button type="reset" wire:click="cancel()" class="me-2 float-end btn btn-secondary">Batal</button>
+
+                    <button wire:loading wire:loading.attr="disabled" type="submit" class="float-end btn btn-primary">
+                        <span class="spinner-border spinner-border-sm text-white mx-3" role="status"></span>
+                    </button>
+                    <button wire:loading.remove type="submit" class="float-end btn btn-primary">
+                        <span>Ubah</span>
+                    </button>
+
+                    <button wire:loading wire:loading.attr="disabled" class="me-2 float-end btn btn-secondary">
+                        <span class="spinner-border spinner-border-sm text-white mx-3" role="status"></span>
+                    </button>
+                    <div  wire:loading.remove>
+                        <button type="reset" wire:click="cancel()" class="me-2 float-end btn btn-secondary">
+                            <span>Batal</span>
+                        </button>
+                    </div>
                 </div>
                 </form>
         </div>

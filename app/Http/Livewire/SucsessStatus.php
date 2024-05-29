@@ -111,5 +111,11 @@ class SucsessStatus extends Component
     public function cancel()
     {
         $this->requestId = NULL;
+        $this->kode_barang = NULL;
+        $this->suplier_id = NULL;
+        $this->lokasi = NULL;
+        $this->jumlah = NULL;
+        $this->keterangan = NULL;
+        $this->jenis = NULL;
     }
 }

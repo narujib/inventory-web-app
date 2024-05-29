@@ -76,4 +76,9 @@ class SuplierList extends Component
     {
         $this->resetPage();
     }
+    
+    public function updatingperPage()
+    {
+        $this->resetPage();
+    }
 }

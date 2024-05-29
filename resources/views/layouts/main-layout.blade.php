@@ -31,6 +31,7 @@ data-template="vertical-menu-template-free">
         rel="stylesheet" />
 
         <link rel="stylesheet" href="{{ asset('sneat-bootstrap-free/vendor/fonts/boxicons.css') }}" />
+        <link rel="stylesheet" href="{{ asset('sneat-bootstrap-free/vendor/fonts/fontawesome/css/all.min.css') }}" />
 
         <!-- Core CSS -->
         <link rel="stylesheet" href="{{ asset('sneat-bootstrap-free/vendor/css/core.css') }}" class="template-customizer-core-css" />
@@ -121,29 +122,7 @@ data-template="vertical-menu-template-free">
         <!-- Place this tag in your head or just before your close body tag. -->
         {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
 
-        <script>
-            $(document).ready(function(){
-                toastr.options = {
-                    "progressBar": true,
-                    "positionClass": "toast-top-right"
-                }
-            });
-
-            window.addEventListener('success', event =>{
-                toastr.success(event.detail.message);
-            });
-            window.addEventListener('warning', event =>{
-                toastr.warning(event.detail.message);
-            });
-            window.addEventListener('error', event =>{
-                toastr.error(event.detail.message);
-            });
-
-            window.addEventListener('close-modal', event => {
-                $('#backDropModalS').modal('hide');
-            });
-        </script>
-
+        @stack('scripts')
 
         @livewireScripts
     </body>

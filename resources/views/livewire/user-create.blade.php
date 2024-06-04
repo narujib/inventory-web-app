@@ -1,8 +1,9 @@
 <div class="col-xl">
     <div class="card mb-3">
-        <h5 class="card-header">Tambahkan pengguna</h5>
+        <h5 class="card-header">Tambahkan Pengguna</h5>
+        <hr class="mt-0 mb-0">
 
-        <div class="card-body">
+        <div class="card-body mt-0">
             <form wire:submit.prevent="store">
                 @csrf
                 <div class="mb-3">
@@ -11,7 +12,7 @@
 
                     @error('name')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <span>{{ $message }}</span>
                         </span>
                     @enderror
                 </div>
@@ -21,27 +22,27 @@
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <span>{{ $message }}</span>
                         </span>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="password">Password</label>
-                    <input wire:model.defer="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="password">
+                    <input wire:model.defer="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <span>{{ $message }}</span>
                         </span>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="password_confirmation">Konfirmasi password</label>
-                    <input wire:model.defer="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="konfirmasi password">
+                    <input wire:model.defer="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="Konfirmasi password">
 
                     @error('password_confirmation')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <span>{{ $message }}</span>
                         </span>
                     @enderror
                 </div>
@@ -58,7 +59,7 @@
 
                     @error('position_id')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <span>{{ $message }}</span>
                         </span>
                     @enderror
                 </div>

@@ -1,6 +1,7 @@
 <div class="col-xl" id="user">
     <div class="card mb-3">
         <h5 class="card-header">Ubah Pengguna</h5>
+        <hr class="mt-0 mb-0">
 
         <div class="card-body">
             <form wire:submit.prevent="update">
@@ -28,7 +29,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="password">Password</label>
-                    <input wire:model.defer="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="password">
+                    <input wire:model.defer="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
 
                     <div class="form-text">
                         Kosongkan jika tidak ingin dirubah
@@ -41,8 +42,8 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="password_confirmation">Password Confirm</label>
-                    <input wire:model.defer="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="password confirmation">
+                    <label class="form-label" for="password_confirmation">Konfirmasi Password</label>
+                    <input wire:model.defer="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="Konfirmasi password">
 
                     @error('password_confirmation')
                         <span class="invalid-feedback" role="alert">
@@ -73,7 +74,7 @@
                         <span class="spinner-border spinner-border-sm text-white mx-3" role="status"></span>
                     </button>
                     <button wire:loading.remove type="submit" class="float-end btn btn-primary">
-                        <span>Ubah</span>
+                        <span>Simpan</span>
                     </button>
 
                     <button wire:loading wire:loading.attr="disabled" class="me-2 float-end btn btn-secondary">

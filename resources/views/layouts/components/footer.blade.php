@@ -5,7 +5,7 @@
             <script>
             document.write(new Date().getFullYear());
             </script>
-            , dibuat dengan ❤️ untuk
+            , dibuat dengan ❤️ untuk memenuhi
             <span class="footer-link fw-medium">Tugas Akhir</span>
         </div>
         <div class="d-none d-lg-inline-block">

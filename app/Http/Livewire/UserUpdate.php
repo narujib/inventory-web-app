@@ -39,7 +39,7 @@ class UserUpdate extends Component
     public function update()
     {
         $rules = [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|min:3',
             'position_id' => 'required|integer',
             'email' => 'required|string|email|max:255|unique:users,email,'.$this->userId
         ];

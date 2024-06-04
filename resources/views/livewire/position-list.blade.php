@@ -1,5 +1,5 @@
 @push('scripts')
-    <script src="{{ asset('scripts/script.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 @endpush
 
 
@@ -9,6 +9,8 @@
         <div class="card-header d-flex align-items-center justify-content-between">
             <h5 class="mb-0">Jabatan</h5>
         </div>
+        <hr class="mt-0 mb-3">
+
         <div class="mx-4 mb-3 d-flex align-items-center justify-content-between">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
@@ -28,28 +30,22 @@
 
         <div class="table-responsive text-nowrap">
             <table class="table table-hover">
-                <caption class="ms-4">
-                    <div class="d-flex align-items-center justify-content-center">
-                        
-                        <small>{{ $positions->links() }}</small>
-                    </div>
-                </caption>
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Nama</th>
-                        <th>Akses</th>
-                        <th>Aksi</th>
+                        <th class="text-center">Akses</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @forelse ($positions as $index => $position)                        
+                    @forelse ($positions as $index => $position)
                         <tr>
                             <td>{{ $positions->firstItem() + $index }}</td>
                             <td>
                                 <span class="fw-medium">{{ $position->name }}</span>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @if ($position->role_as == 1)
                                     <span class="badge rounded-pill bg-label-primary">Yes</span>
                                 @elseif ($position->role_as == 0)
@@ -58,15 +54,14 @@
                                     <span class="badge rounded-pill bg-label-warning">unknown</span>
                                 @endif
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <div class="mt-0">
-                                    <button  wire:click="getPosition({{ $position->id }})"  class="scroll-position btn btn-sm btn-icon btn-warning me-2">
+                                    <button  wire:click="getPosition({{ $position->id }})"  class="scroll-position btn btn-sm btn-icon btn-outline-secondary">
                                         <i class='bx bxs-edit'></i>
                                     </button>
-                                    <button wire:click="deleteConfirm({{ $position->id }})" type="button" class="btn btn-sm btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
+                                    <button wire:click="deleteConfirm({{ $position->id }})" type="button" class="btn btn-sm btn-icon btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#backDropModal">
                                         <i class='bx bx-trash' ></i>
                                     </button>
-
                                 </div>
                             </td>
                         </tr>
@@ -82,6 +77,11 @@
                 </tbody>
             </table>
         </div>
+        <caption>
+            <div class="d-flex align-items-center justify-content-center mt-3">
+                <small class="pagination-sm">{{ $positions->links() }}</small>
+            </div>
+        </caption>
     </div>
 
 <!-- Modal -->
@@ -90,7 +90,6 @@
             <div class="modal-content">
                 <div class="modal-body d-flex justify-content-center mt-4 align-items-center ">
                     <div class="text-center">
-                        <i class="fa-solid fa-5x fa-triangle-exclamation mb-2"></i>
                         <h5 class="text-muted">Apakah anda yakin !</h5>
                     </div>
                 </div>

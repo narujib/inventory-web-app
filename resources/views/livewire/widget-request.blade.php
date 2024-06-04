@@ -11,7 +11,7 @@
                             </div>
                             <div class="avatar me-sm-4">
                                 <span class="avatar-initial rounded bg-label-secondary">
-                                    <i class="fa-regular fa-rectangle-list fa-xl"></i>
+                                    <i class='bx bx-align-justify bx-sm'></i>
                                 </span>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                             </div>
                             <div class="avatar me-lg-4">
                                 <span class="avatar-initial rounded bg-label-secondary">
-                                    <i class="fa-regular fa-clock fa-xl"></i>
+                                    <i class='bx bx-list-plus bx-sm'></i>
                                 </span>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="avatar me-sm-4">
                                 <span class="avatar-initial rounded bg-label-secondary">
-                                    <i class="fa-regular fa-hourglass-half fa-xl"></i>
+                                    <i class='bx bx-list-check bx-sm'></i>
                                 </span>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                             </div>
                             <div class="avatar">
                                 <span class="avatar-initial rounded bg-label-secondary">
-                                    <i class="fa-solid fa-xl fa-check-double"></i>
+                                    <i class='bx bx-check-double bx-sm'></i>
                                 </span>
                             </div>
                         </div>

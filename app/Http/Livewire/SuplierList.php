@@ -27,25 +27,25 @@ class SuplierList extends Component
     public function render()
     {
         return view('livewire.suplier-list', [
-            'supliers' => Suplier::orderBy('id','desc')->where('name','like','%'.$this->search.'%')->paginate($this->perPage)
+            'supliers' => Suplier::orderBy('id','desc')->where('name','like','%'.$this->search.'%')->paginate($this->perPage)->onEachSide(1)
         ]);
     }
 
-    public function deleteConfirm($id){
-        $this->emit('suplierUpdateStatusFalse');
-        $this->suplierId = $id;
-    }
+    // public function deleteConfirm($id){
+    //     $this->emit('suplierUpdateStatusFalse');
+    //     $this->suplierId = $id;
+    // }
 
-    public function destroy()
-    {
-        $suplier = Suplier::where('id', $this->suplierId)->first();
-        $suplier->delete();
+    // public function destroy()
+    // {
+    //     $suplier = Suplier::where('id', $this->suplierId)->first();
+    //     $suplier->delete();
 
-        $this->suplierId = NULL;
+    //     $this->suplierId = NULL;
 
-        $this->dispatchBrowserEvent('success', ['message'=>'Suplier berhasil dihapus !']);
-        $this->emit('SuplierStore');
-    }
+    //     $this->dispatchBrowserEvent('success', ['message'=>'Suplier berhasil dihapus !']);
+    //     $this->emit('SuplierStore');
+    // }
 
     public function getSuplier($id)
     {
@@ -57,11 +57,14 @@ class SuplierList extends Component
     public function generatePdf()
     {
         $data = [
-            'supliers' => Suplier::all()
+            'supliers' => Suplier::all(),
+            'date' => date('Y-m-d H:i:s')
         ];
 
+        
         $pdf = Pdf::loadView('supliers-pdf', $data);
-
+        $pdf->set_option("isPhpEnabled", true);
+        $pdf->setPaper('A4', 'potrait');
         return response()->streamDownload(function() use($pdf){
             echo $pdf->stream();
         }, 'supliers.pdf');

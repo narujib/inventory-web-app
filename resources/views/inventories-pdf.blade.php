@@ -746,7 +746,7 @@ video {
             <tr>
               <td class="w-1/2 align-top py-4">
                 <div class="text-sm text-neutral-600">
-                  <p class="font-bold">Data Suplier</p>
+                  <p class="font-bold">Inventaris</p>
                   <p>Dicetak oleh : {{ Auth::user()->name }}</p>
                   <p>Dicetak pada : {{ $date }}</p>
                 </div>
@@ -761,24 +761,26 @@ video {
           <thead>
             <tr>
               <td class="border-b-2 border-main pb-3 pl-3 font-bold text-main">#</td>
-              <td class="border-b-2 border-main pb-3 pl-2 font-bold text-main">Nama Suplier</td>
-              <td class="border-b-2 border-main pb-3 pl-2 font-bold text-main">Telepon</td>
-              <td class="border-b-2 border-main pb-3 pl-2 font-bold text-main">Email</td>
-              <td class="border-b-2 border-main pb-3 pl-2 font-bold text-main">Alamat</td>
+              <td class="border-b-2 border-main pb-3 pl-2 font-bold text-main">Kode Barang</td>
+              <td class="border-b-2 border-main pb-3 pl-2 font-bold text-main">Nama </td>
+              <td class="border-b-2 border-main pb-3 pl-2 font-bold text-main">Lokasi</td>
+              <td class="border-b-2 border-main pb-3 pl-2 font-bold text-main">Jumlah</td>
+              <td class="border-b-2 border-main pb-3 pl-2 font-bold text-main">Keterangan</td>
             </tr>
           </thead>
           <tbody>
-             @forelse ($supliers as $index => $suplier)
+             @forelse ($inventories as $index => $data)
              <tr>
                <td class="border-b py-3 pl-3">{{ $index + 1 }}.</td>
-               <td class="border-b py-3 pl-2">{{ $suplier->name }}</td>
-               <td class="border-b py-3 pl-2">{{ $suplier->telepon }}</td>
-               <td class="border-b py-3 pl-2">{{ $suplier->email }}</td>
-               <td class="border-b py-3 pl-2">{{ $suplier->alamat }}</td>
+               <td class="border-b py-3 pl-2">{{ $data->kode_barang }}</td>
+               <td class="border-b py-3 pl-2">{{ $data->name }}</td>
+               <td class="border-b py-3 pl-2">{{ $data->lokasi }}</td>
+               <td class="border-b py-3 pl-2">{{ $data->jumlah }} pcs</td>
+               <td class="border-b py-3 pl-2">{{ $data->keterangan }}</td>
              </tr>
              @empty
              <tr class="text-center">
-               <td colspan="5">Tidak ada data ditemukan</td>
+               <td colspan="6">Tidak ada data ditemukan</td>
              </tr>
              @endforelse
           </tbody>

@@ -22,15 +22,15 @@ class SubmissionCreate extends Component
     public $user_id;
 
     protected $rules = [
-        'name' => 'required|string|max:255',
+        'name' => 'required|string|max:255|min:3',
         'kode_barang' => 'nullable|string|max:255||unique:inventories,kode_barang',
         'jumlah' => 'required|integer|max:9999|min:1',
-        'keterangan' => 'nullable|string|max:255',
+        'keterangan' => 'nullable|string|max:255|min3',
         'jenis' => 'required|integer|max:99',
 
         'status' => 'nullable|integer|max:99',
         'kode_permintaan' => 'nullable|string|max:255|unique:submissions,kode_permintaan',
-        'keterangan' => 'nullable|string|max:255',        
+        'keterangan' => 'nullable|string|max:255|min:3',
         'user_id' => 'nullable|integer',
     ];
 
@@ -39,7 +39,8 @@ class SubmissionCreate extends Component
         return view('livewire.submission-create');
     }
 
-    public function store(){        
+    public function store()
+    {
         $this->validate();
         $uID = IdGenerator::generate(['table' => 'submissions', 'field' => 'kode_permintaan', 'length' => 8, 'prefix' => 'PR']);
 
@@ -47,8 +48,9 @@ class SubmissionCreate extends Component
 
         $inventory->name = $this->name;
         $inventory->kode_barang = null;
-        $inventory->jumlah = $this->jumlah;
+        $inventory->jumlah = 0;
         $inventory->keterangan = $this->keterangan;
+        $inventory->user_id = auth()->user()->id;
         $inventory->jenis = $this->jenis;
         
         $inventory->save();
@@ -58,6 +60,7 @@ class SubmissionCreate extends Component
         $submission->kode_permintaan = $uID;
         $submission->inventory_id = $inventory->id;
         $submission->user_id = auth()->user()->id;
+        $submission->jumlah = $this->jumlah;
 
         $submission->save();
 

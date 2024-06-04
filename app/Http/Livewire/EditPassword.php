@@ -18,18 +18,13 @@ class EditPassword extends Component
         return view('livewire.edit-password');
     }
 
-
-
-
-     public function update()
+    public function update()
     {
-
-        
-    $this->validate([
-        'current_password' => 'required',
-        'new_password' => 'required|min:3|same:confirm_new_password',
-        'confirm_new_password' => 'required|min:3',
-    ]);
+        $this->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:3|same:confirm_new_password',
+            'confirm_new_password' => 'required|min:3'
+        ]);
 
         if (!Hash::check($this->current_password, Auth::user()->password)) {
             $this->addError('current_password', 'Current password is incorrect.');
@@ -45,11 +40,19 @@ class EditPassword extends Component
                 'password' => Hash::make($this->new_password)
             ]);
         }
-        // $user->password = Hash::make($this->new_password);
-        // $user->save();
-
-        session()->flash('message', 'Password successfully updated.');
-        $this->reset(['current_password', 'new_password', 'confirm_new_password']);
+        $this->dispatchBrowserEvent('success', ['message'=>'Password berhasil diubah !']);
+        $this->removeMe();
     }
 
+    public function cancel()
+    {
+        $this->removeMe();
+    }
+
+    private function removeMe()
+    {
+        $this->current_password = NULL;
+        $this->new_password = NULL;
+        $this->confirm_new_password = NULL;
+    }
 }

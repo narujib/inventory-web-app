@@ -16,12 +16,15 @@ return new class extends Migration
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
             
-            $table->integer('status')->comment('1=pending,2=prosess,3=finish');
-            $table->string('kode_permintaan');
-            $table->unsignedBigInteger('inventory_id')->unique()->references('id')->on('inventories')->onDelete('cascade');
+            $table->unsignedBigInteger('inventory_id')->unique();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('status')->comment('1=pending,2=prosess,3=finish');
+            $table->string('kode_permintaan')->unique();
+            $table->integer('jumlah');
             $table->timestamps();
+            
+            $table->foreign('inventory_id')->references('id')->on('inventories');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

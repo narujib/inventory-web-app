@@ -1,9 +1,9 @@
 <div class="row">
-        @livewire('user-list')
+    @livewire('user-list')
 
-        @if ($userUpdateStatus)
-        @livewire('user-update')            
-        @else
-        @livewire('user-create')            
-        @endif
+    @if ($userUpdateStatus)
+        @livewire('user-update')
+    @else
+        @livewire('user-create')
+    @endif
 </div>

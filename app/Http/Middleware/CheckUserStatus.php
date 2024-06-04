@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RoleMiddleware
+class CheckUserStatus
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,10 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // $user = Auth::user();
 
-        if(!Auth::user()->position->role_as == '1'){
-            return redirect('/profile')->with('message', 'Anda tidak memiliki akses !');
+        if(!Auth::user()->status == '1'){
+            Auth::logout();
+            return redirect('/login')->with('x', 'Akun anda telah dinonaktifkan !');
         }
 
         return $next($request);

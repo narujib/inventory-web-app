@@ -1,5 +1,5 @@
 @push('scripts')
-    <script src="{{ asset('scripts/script.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 @endpush
 
 <div class="col-xl-8">
@@ -9,15 +9,16 @@
             <h5 class="mb-0">Suplier</h5>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group" role="group" aria-label="First group">
-                    <button type="button" class="btn btn-outline-secondary">
-                    <i class="fa-solid fa-file-pdf"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary">
-                    <i class="fa-solid fa-print"></i>
+                    <a type="button" target="_blank"  wire:click="generatePdf()"  class="btn btn-sm btn-outline-secondary">
+                        <i class='bx bx-file-blank bx-xs' ></i>
+                    </a>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <i class='bx bx-printer bx-xs' ></i>
                     </button>
                 </div>
             </div>
         </div>
+        <hr class="mt-0 mb-3">
         <div class="mx-4 mb-3 d-flex align-items-center justify-content-between">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
@@ -37,44 +38,37 @@
 
         <div class="table-responsive text-nowrap">
             <table class="table table-hover">
-                <caption class="ms-4">
-                    <div class="d-flex align-items-center justify-content-center">
-                        
-                        <small>{{ $supliers->links() }}</small>
-                    </div>
-                </caption>
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Nama</th>
                         <th>Telepon</th>
+                        <th>Email</th>
                         <th>Alamat</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @forelse ($supliers as $index => $suplier)                        
+                    @forelse ($supliers as $index => $suplier)
                         <tr>
                             <td>{{ $supliers->firstItem() + $index }}</td>
                             <td>
                                 <span class="fw-medium">{{ $suplier->name }}</span>
                             </td>
                             <td>{{ $suplier->telepon }}</td>
+                            <td>{{ empty($suplier->email) ? '-' : $suplier->email }}</td>
                             <td>{{ $suplier->alamat }}</td>
                             <td>
                                 <div class="mt-0">
-                                    <button  wire:click="getSuplier({{ $suplier->id }})"  class="scroll-suplier btn btn-sm btn-icon btn-warning me-2">
+                                    <button  wire:click="getSuplier({{ $suplier->id }})"  class="scroll-suplier btn btn-sm btn-icon btn-outline-secondary">
                                         <i class='bx bxs-edit'></i>
-                                    </button>
-                                    <button wire:click="deleteConfirm({{ $suplier->id }})" type="button" class="btn btn-sm btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
-                                        <i class='bx bx-trash' ></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center">
+                            <td colspan="6" class="text-center">
                                 <h4 class="text-muted my-3">
                                 Tidak ada data ditemukan !
                                 </h4>
@@ -84,6 +78,11 @@
                 </tbody>
             </table>
         </div>
+        <caption>
+            <div class="d-flex align-items-center justify-content-center mt-3">
+                <small class="pagination-sm">{{ $supliers->links() }}</small>
+            </div>
+        </caption>
     </div>
 
 <!-- Modal -->

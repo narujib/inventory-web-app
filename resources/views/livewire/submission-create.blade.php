@@ -3,6 +3,7 @@
         <h5 class="card-header">
             Ajukan
         </h5>
+        <hr class="mt-0 mb-0">
         <div class="card-body">
             <form wire:submit.prevent="store">
                 @csrf
@@ -13,7 +14,7 @@
 
                         @error('name')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <span>{{ $message }}</span>
                             </span>
                         @enderror
                     </div>
@@ -23,7 +24,7 @@
 
                         @error('jumlah')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <span>{{ $message }}</span>
                             </span>
                         @enderror
                     </div>
@@ -39,7 +40,7 @@
 
                         @error('jenis')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <span>{{ $message }}</span>
                             </span>
                         @enderror
                     </div>
@@ -49,7 +50,7 @@
 
                         @error('keterangan')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <span>{{ $message }}</span>
                             </span>
                         @enderror
                     </div>

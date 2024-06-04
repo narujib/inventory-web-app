@@ -19,13 +19,13 @@ class IncomingCreate extends Component
     public $jenis;
 
     protected $rules = [
-        'name' => 'required|string|max:255',
+        'name' => 'required|string|max:255|min:3',
         'kode_barang' => 'nullable|string|max:255|unique:inventories,kode_barang',
         'suplier_id' => 'required|integer',
-        'lokasi' => 'required|string|max:255',
+        'lokasi' => 'required|string|max:255|min:3',
         'jumlah' => 'required|integer|max:9999|min:1',
-        'keterangan' => 'nullable|string|max:255',
-        'jenis' => 'required|integer|max:99',
+        'keterangan' => 'nullable|string|max:255|min:3',
+        'jenis' => 'required|integer|max:99'
     ];
 
     public function render()
@@ -42,6 +42,7 @@ class IncomingCreate extends Component
 
         $inventory = new Inventory();
         $inventory->name = $this->name;
+        $inventory->user_id = auth()->user()->id;
         $inventory->kode_barang = $uID;
         $inventory->suplier_id = $this->suplier_id;
         $inventory->lokasi = $this->lokasi;

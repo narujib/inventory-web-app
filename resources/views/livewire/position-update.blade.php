@@ -1,6 +1,7 @@
 <div class="col-xl" id="position">
     <div class="card mb-3">
-        <h5 class="card-header">Ubah jabatan</h5>        
+        <h5 class="card-header">Ubah Jabatan</h5>
+        <hr class="my-0">
 
         <div class="card-body">
             <form wire:submit.prevent="update">
@@ -12,7 +13,7 @@
 
                     @error('name')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <span>{{ $message }}</span>
                         </span>
                     @enderror
                 </div>
@@ -26,7 +27,7 @@
                         <span class="spinner-border spinner-border-sm text-white mx-3" role="status"></span>
                     </button>
                     <button wire:loading.remove type="submit" class="float-end btn btn-primary">
-                        <span>Ubah</span>
+                        <span>Simpan</span>
                     </button>
 
                     <button wire:loading wire:loading.attr="disabled" class="me-2 float-end btn btn-secondary">

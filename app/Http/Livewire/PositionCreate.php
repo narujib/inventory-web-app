@@ -18,7 +18,7 @@ class PositionCreate extends Component
     public function store()
     {
         $this->validate([
-            'name' => 'required|string|max:255|unique:positions,name',
+            'name' => 'required|string|max:255|unique:positions,name|min:3',
             'role_as' => 'nullable'
         ]);
 

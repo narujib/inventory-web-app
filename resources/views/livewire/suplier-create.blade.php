@@ -1,6 +1,7 @@
 <div class="col-xl">
     <div class="card mb-3">
-        <h5 class="card-header">Tambah data suplier</h5>
+        <h5 class="card-header">Tambah Suplier</h5>
+        <hr class="mt-0 mb-0">
 
         <div class="card-body">
             <form wire:submit.prevent="store">
@@ -11,7 +12,7 @@
 
                     @error('name')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <span>{{ $message }}</span>
                         </span>
                     @enderror
                 </div>
@@ -21,17 +22,17 @@
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <span>{{ $message }}</span>
                         </span>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-phone">Telepon</label>
-                    <input wire:model.defer="telepon" type="number" class="form-control phone-mask  @error('telepon') is-invalid @enderror" placeholder="Telepon">
+                    <input wire:model.defer="telepon" type="number" min="1" class="form-control phone-mask  @error('telepon') is-invalid @enderror" placeholder="Telepon">
 
                     @error('telepon')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <span>{{ $message }}</span>
                         </span>
                     @enderror
                 </div>
@@ -40,7 +41,7 @@
                 <textarea wire:model.defer="alamat" class="form-control  @error('alamat') is-invalid @enderror" placeholder="Alamat"></textarea>
                 @error('alamat')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                        <span>{{ $message }}</span>
                     </span>
                 @enderror
                 </div>

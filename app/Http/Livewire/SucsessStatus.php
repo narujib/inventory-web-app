@@ -11,7 +11,6 @@ use Livewire\Component;
 class SucsessStatus extends Component
 {
     public $requestId;
-    // public $status;
 
     public $name;
     public $kode_barang;
@@ -40,12 +39,13 @@ class SucsessStatus extends Component
     protected $rules = [
         'status' => 'required',
 
-        'name' => 'required|string|max:255',
+        'user_id' => 'required',
+        'name' => 'required|string|max:255|min:3',
         'kode_barang' => 'nullable|string|max:255|unique:inventories,kode_barang',
         'suplier_id' => 'required|integer',
-        'lokasi' => 'required|string|max:255',
-        'jumlah' => 'required|integer|max:9999',
-        'keterangan' => 'nullable|string|max:255',
+        'lokasi' => 'required|string|max:255|min:3',
+        'jumlah' => 'required|integer|max:9999|min:1',
+        'keterangan' => 'nullable|string|max:255|min:3',
         'jenis' => 'required|integer|max:99',
     ];
 
@@ -55,11 +55,12 @@ class SucsessStatus extends Component
 
         $subData = Submission::where('inventory_id', $this->requestId)->first();
         $this->status = $subData['status'];
-        $this->kode_permintaan = $subData['kode_permintaan'];
-
+        $this->jumlah = $subData['jumlah'];
+        // $this->kode_permintaan = $subData['kode_permintaan'];
+        
         $invData = Inventory::where('id', $this->requestId)->first();
         $this->name = $invData['name'];
-        $this->jumlah = $invData['jumlah'];
+        $this->user_id = auth()->user()->id;
         $this->keterangan = $invData['keterangan'];
         $this->jenis = $invData['jenis'];
 
@@ -69,13 +70,13 @@ class SucsessStatus extends Component
     {
         $this->validate();
 
-        $uID = IdGenerator::generate(['table' => 'inventories', 'field' => 'kode_barang', 'length' => 5, 'prefix' => 'BR']);
+        $uID = IdGenerator::generate(['table' => 'inventories', 'field' => 'kode_barang', 'length' => 8, 'prefix' => 'BR']);
         $submission = Submission::where('inventory_id', $this->requestId)->first();
         $inventory = Inventory::where('id', $this->requestId)->first();
         
-        if($submission->status == 1 || $submission->status == 2){
-            if($this->requestId){
-                if($inventory){
+        if ($submission->status == 1 || $submission->status == 2) {
+            if ($this->requestId) {
+                if ($inventory) {
                     $inventory->name = $this->name;
                     $inventory->kode_barang = $uID;
                     $inventory->suplier_id = $this->suplier_id;
@@ -85,30 +86,29 @@ class SucsessStatus extends Component
                     $inventory->jenis = $this->jenis;
                     $inventory->save();
 
-                    if($submission){
+                    if ($submission) {
                         $submission->status = 3;
                         $submission->save();
                     }
                 }
-                $this->dispatchBrowserEvent('success', ['message'=>'Berhasil ditambahkan ke inventory !']);
+                $this->dispatchBrowserEvent('success', ['message' => 'Berhasil ditambahkan ke inventory!']);
                 $this->dispatchBrowserEvent('close-modal');
                 $this->emit('RequestUpdated');
             }
-        }else{
-            $this->dispatchBrowserEvent('warning', ['message'=>'Terjadi kesalahan !']);
+        } elseif ($submission->status == 3) {
+            $this->dispatchBrowserEvent('warning', ['message' => 'Perubahan ditolak !']);
             $this->dispatchBrowserEvent('close-modal');
         }
 
-        $this->name = NULL;
-        $this->kode_barang = NULL;
-        $this->suplier_id = NULL;
-        $this->lokasi = NULL;
-        $this->jumlah = NULL;
-        $this->keterangan = NULL;
-        $this->jenis = NULL;
+        $this->removeMe();
     }
 
     public function cancel()
+    {
+        $this->removeMe();
+    }
+
+    private function removeMe()
     {
         $this->requestId = NULL;
         $this->name = NULL;

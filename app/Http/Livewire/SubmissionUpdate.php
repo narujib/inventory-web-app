@@ -35,11 +35,11 @@ class SubmissionUpdate extends Component
 
     public function showSubmission($submission)
     {
+        $this->jumlah = $submission['jumlah'];
         $this->submissionInventoryId = $submission['inventory_id'];
 
         $data = Inventory::where('id', $this->submissionInventoryId)->first();
         $this->name = $data['name'];
-        $this->jumlah = $data['jumlah'];
         $this->keterangan = $data['keterangan'];
         $this->jenis = $data['jenis'];
     }
@@ -47,11 +47,11 @@ class SubmissionUpdate extends Component
     public function update()
     {
         $this->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|min:3',
             'jumlah' => 'required|integer|max:9999|min:1',
             'jenis' => 'required|integer|max:99',
-            'keterangan' => 'nullable|max:255'
-        ]);      
+            'keterangan' => 'nullable|max:255|min:3'
+        ]);
 
         if($this->submissionInventoryId){
             $inventory = Inventory::where('id', $this->submissionInventoryId)->first();
@@ -62,16 +62,15 @@ class SubmissionUpdate extends Component
             if($usId == $submission->user_id && $x == 1){
                 $inventory->update([
                     'name' => $this->name,
-                    'jumlah' => $this->jumlah,
+                    'jumlah' => 0,
                     'keterangan' => $this->keterangan,
                     'jenis' => $this->jenis
                 ]);
+                $submission->update([
+                    'jumlah' => $this->jumlah
+                ]);
 
-                $this->name = NULL;
-                $this->jumlah = NULL;
-                $this->keterangan = NULL;
-                $this->jenis = NULL;
-
+                $this->removeMe();
                 $this->dispatchBrowserEvent('success', ['message'=>'Pengajuan berhasil diubah !']);
             }else{
                 $this->dispatchBrowserEvent('warning', ['message'=>'Tindakan ini tidak dapat dilanjutkan !']);
@@ -83,11 +82,15 @@ class SubmissionUpdate extends Component
 
     public function cancel()
     {
+        $this->removeMe();
+        $this->emit('submissionUpdateStatusFalse');
+    }
+
+    public function removeMe()
+    {
         $this->name = NULL;
         $this->jumlah = NULL;
         $this->keterangan = NULL;
         $this->jenis = NULL;
-
-        $this->emit('submissionUpdateStatusFalse');
     }
 }

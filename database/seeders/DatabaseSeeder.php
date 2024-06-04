@@ -31,29 +31,62 @@ class DatabaseSeeder extends Seeder
         ]);
         
         User::factory()->create([
-            'name' => 'admin',
+            'name' => 'Admin',
+            'avatar' => 'default.png',
             'email' => 'admin@gmail.com',
             'position_id' => 1,
+            'status' => 1,
             'email_verified_at' => now(),
-            'password' => bcrypt('admin12345'),
+            'password' => bcrypt('password12345'),
             'remember_token' => Str::random(10),
         ]);
         User::factory()->create([
-            'name' => 'user',
+            'name' => 'User',
+            'avatar' => 'default.png',
             'email' => 'user@gmail.com',
             'position_id' => 2,
+            'status' => 1,
             'email_verified_at' => now(),
-            'password' => bcrypt('user12345'),
+            'password' => bcrypt('password12345'),
             'remember_token' => Str::random(10),
         ]);
+        User::factory()->create([
+            'name' => 'Non Active User',
+            'avatar' => 'default.png',
+            'email' => 'nonactive@gmail.com',
+            'position_id' => 2,
+            'status' => 0,
+            'email_verified_at' => now(),
+            'password' => bcrypt('password12345'),
+            'remember_token' => Str::random(10),
+        ]);
+
+        Suplier::factory()->create([
+            'name' => 'Unknown',
+            'alamat' => 'Unknown',
+            'telepon' => '0987654321',
+            'email' => 'example@example.com',
+        ]);
+
         Position::factory(10)->create();
         User::factory(50)->create();
         Suplier::factory(50)->create();
 
-        Inventory::factory(50)->create();
-        Submission::factory(50)->create();
+        $this->call(InventorySeeder::class);
+        $this->call(SubmissionSeeder::class);
+
+        // Inventory::factory(20)->create([
+        //     'kode_barang' => 'BX'. $this()->faker->unique->numberBetween(100041,100060),
+        //     'suplier_id' => mt_rand(1,6),
+        //     'user_id' => 3,
+        //     'lokasi' => $this()->faker->word(),
+        //     'jumlah' => mt_rand(70,300),
+        // ]);
+
+        // Inventory::factory(50)->create();
+        // Submission::factory(50)->create();
         
-        // Inventory::factory(1000)->create();
-        // Submission::factory(500)->create();
+        // Inventory::factory(300)->create();
+        // Submission::factory(300)->create();
     }
 }

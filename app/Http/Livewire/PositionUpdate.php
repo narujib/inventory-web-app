@@ -30,19 +30,25 @@ class PositionUpdate extends Component
     public function update()
     {
         $this->validate([
-            'name' => 'required|string|max:255|unique:positions,name,'.$this->positionId
+            'name' => 'required|min:3|string|max:255|unique:positions,name,'.$this->positionId
         ]);
 
         if($this->positionId){
             $position = Position::find($this->positionId);
-            $position->update([
-                'name' => $this->name,
-                'role_as' => $this->role_as
-            ]);
+    
+        if ($this->positionId == 1) {
+            $role_as = 1;
+            $this->dispatchBrowserEvent('warning', ['message'=>'Akses tidak dapat dirubah !']);
+        } else {
+            $role_as = $this->role_as;
+        }
 
-            $this->name = NULL;
-            $this->role_as = NULL;
+        $position->update([
+            'name' => $this->name,
+            'role_as' => $role_as
+        ]);
 
+            $this->removeMe();
             $this->dispatchBrowserEvent('success', ['message'=>'Jabatan berhasil diubah !']);
             $this->emit('PositionUpdated');
         }else{
@@ -52,9 +58,13 @@ class PositionUpdate extends Component
     }
 
     public function cancel(){
+        $this->removeMe();
+        $this->emit('positionUpdateStatusFalse');
+    }
+
+    private function removeMe()
+    {
         $this->name = NULL;
         $this->role_as = NULL;
-        
-        $this->emit('positionUpdateStatusFalse');
     }
 }

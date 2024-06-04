@@ -21,9 +21,9 @@ class SuplierCreate extends Component
 
     public function store(){
         $this->validate([
-            'name' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
-            'telepon' => 'required|string|max:255|unique:supliers,telepon',
+            'name' => 'required|string|max:255|min:3',
+            'alamat' => 'required|string|max:255|min:3',
+            'telepon' => 'required|string|max:255|min:3|unique:supliers,telepon',
             'email' => 'nullable|string|email|max:255|unique:supliers,email'
         ]);
 
@@ -31,7 +31,7 @@ class SuplierCreate extends Component
             'name' => $this->name,
             'alamat' => $this->alamat,
             'telepon' => $this->telepon,
-            'email' => $this->email
+            'email' => $this->email ? $this->email : null
         ]);
 
         $this->name = NULL;

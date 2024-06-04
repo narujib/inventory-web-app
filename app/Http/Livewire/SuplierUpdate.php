@@ -22,7 +22,8 @@ class SuplierUpdate extends Component
         return view('livewire.suplier-update');
     }
 
-    public function showSuplier($suplier){
+    public function showSuplier($suplier)
+    {
         $this->suplierId = $suplier['id'];
         $this->name = $suplier['name'];
         $this->email = $suplier['email'];
@@ -30,12 +31,13 @@ class SuplierUpdate extends Component
         $this->telepon = $suplier['telepon'];
     }
 
-    public function update(){
+    public function update()
+    {
         $this->validate([
-            'name' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
-            'telepon' => 'required|string|max:255|unique:supliers,telepon,'.$this->suplierId,
-            'email' => 'string|email|max:255|unique:supliers,email,'.$this->suplierId
+            'name' => 'required|string|max:255|min:3',
+            'alamat' => 'required|string|max:255|min:3',
+            'telepon' => 'required|string|max:255|min:3|unique:supliers,telepon,'.$this->suplierId,
+            'email' => 'nullable|string|email|max:255|unique:supliers,email,'.$this->suplierId
         ]);
 
         if ($this->suplierId){
@@ -44,14 +46,10 @@ class SuplierUpdate extends Component
                 'name' => $this->name,
                 'alamat' => $this->alamat,
                 'telepon' => $this->telepon,
-                'email' => $this->email
+                'email' => $this->email ? $this->email : null
             ]);
 
-            $this->name = NULL;
-            $this->email = NULL;
-            $this->telepon = NULL;
-            $this->alamat = NULL;
-
+            $this->removeMe();
             $this->emit('suplierUpdateStatusFalse');
             $this->dispatchBrowserEvent('success', ['message'=>'Suplier berhasil diubah !']);
 
@@ -59,12 +57,17 @@ class SuplierUpdate extends Component
         $this->emit('SuplierUpdated');
     }
 
-    public function cancel(){
+    public function cancel()
+    {
+        $this->removeMe();
+        $this->emit('suplierUpdateStatusFalse');
+    }
+
+    public function removeMe()
+    {
         $this->name = NULL;
         $this->email = NULL;
         $this->telepon = NULL;
         $this->alamat = NULL;
-        
-        $this->emit('suplierUpdateStatusFalse');
     }
 }

@@ -19,7 +19,6 @@ class Request extends Component
 
     public function data($submission)
     {
-        // dd($submission);
         $this->emit('dataRequest', $submission);
     }
 

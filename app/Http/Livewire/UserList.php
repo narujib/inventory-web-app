@@ -14,6 +14,16 @@ class UserList extends Component
 {
     use WithPagination;
 
+    public $name;
+    public $email;
+    public $alamat;
+    public $avatar;
+    public $status;
+    public $telepon;
+
+    public $positionName;
+    public $positionRole;
+
     public $userUpdateStatus = false;
     public $perPage = 10;
     public $search = '';
@@ -37,7 +47,7 @@ class UserList extends Component
                     ->orWhere('positions.name', 'like', '%' . $this->search . '%');
                 })
                 ->select('users.*', 'positions.name as position_name')
-                ->paginate($this->perPage)
+                ->paginate($this->perPage)->onEachSide(1)
             ]);
     }
 
@@ -67,9 +77,64 @@ class UserList extends Component
         $this->emit('UserStore');
     }
 
+    public function detail($id)
+    {
+        $user = User::with('position')->find($id);
+
+        $this->userId = $user->id;
+        $this->name = $user->name;
+        $this->email = $user->email;
+        $this->avatar = $user->avatar;
+        $this->status = $user->status;
+        $this->alamat = $user->adress;
+        $this->telepon = $user->telepon;
+
+        $this->positionName = $user->position->name;
+        $this->positionRole = $user->position->role_as;
+    }
+
     public function cancel()
     {
+        $this->removeMe();
+    }
+
+    public function removeMe()
+    {
         $this->userId = NULL;
+        $this->name = NULL;
+        $this->email = NULL;
+        $this->avatar = NULL;
+        $this->status = NULL;
+        $this->alamat = NULL;
+        $this->telepon = NULL;
+        $this->positionName = NULL;
+        $this->positionRole = NULL;
+    }
+
+    public function update()
+    {
+        $user = User::where('id', $this->userId)->first();
+        if ($user->id !== 1  && $user->id !== auth()->user()->id){
+            if($user->status == 1){
+                $user->update([
+                    'status' => 0,
+                ]);
+
+                $this->dispatchBrowserEvent('success', ['message'=>'User berhasil dinonaktifkan !']);
+            }else{
+                
+                $user->update([
+                    'status' => 1,
+                ]);
+                $this->dispatchBrowserEvent('success', ['message'=>'User berhasil diaktifkan !']);
+            }
+            
+        }else{
+            $this->dispatchBrowserEvent('success', ['message'=>'Tindakan tidak dapat dilanjutkan !']);
+            
+        }
+        
+        $this->removeMe();
     }
 
     public function updatingSearch()

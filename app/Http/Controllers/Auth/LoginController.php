@@ -32,10 +32,15 @@ class LoginController extends Controller
 
     protected function authenticated()
     {
+        if (Auth::user()->status == '0') {
+            Auth::logout();
+            return redirect('/login')->with('x', 'Akun anda telah dinonaktifkan !');;
+        }
+        
         if(Auth::user()->position->role_as == '1'){
             return redirect('/dashboard')->with('status', 'Selamat datang !');
         }else{
-            return redirect('/submission')->with('status', 'Login berhasil !');
+            return redirect('/profile')->with('status', 'Login berhasil !');
         }
     }
 

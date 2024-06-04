@@ -95,7 +95,7 @@ data-template="vertical-menu-template-free">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="{{ asset('sneat-bootstrap-free/img/favicon/favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon/favicon.ico') }}" />
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -104,25 +104,25 @@ data-template="vertical-menu-template-free">
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet" />
 
-        <link rel="stylesheet" href="{{ asset('sneat-bootstrap-free/vendor/fonts/boxicons.css') }}" />
+        <link rel="stylesheet" href="{{ asset('vendor/fonts/boxicons.css') }}" />
 
         <!-- Core CSS -->
-        <link rel="stylesheet" href="{{ asset('sneat-bootstrap-free/vendor/css/core.css') }}" class="template-customizer-core-css" />
-        <link rel="stylesheet" href="{{ asset('sneat-bootstrap-free/vendor/css/theme-default.css') }}" class="template-customizer-theme-css" />
-        <link rel="stylesheet" href="{{ asset('sneat-bootstrap-free/css/demo.css') }}" />
+        <link rel="stylesheet" href="{{ asset('vendor/css/core.css') }}" class="template-customizer-core-css" />
+        <link rel="stylesheet" href="{{ asset('vendor/css/theme-default.css') }}" class="template-customizer-theme-css" />
+        <link rel="stylesheet" href="{{ asset('css/demo.css') }}" />
 
         <!-- Vendors CSS -->
-        <link rel="stylesheet" href="{{ asset('sneat-bootstrap-free/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+        <link rel="stylesheet" href="{{ asset('vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
         <!-- Page CSS -->
         <!-- Page -->
-        <link rel="stylesheet" href="{{ asset('sneat-bootstrap-free/vendor/css/pages/page-auth.css') }}" />
+        <link rel="stylesheet" href="{{ asset('vendor/css/pages/page-auth.css') }}" />
 
         <!-- Helpers -->
-        <script src="{{ asset('sneat-bootstrap-free/vendor/js/helpers.js') }}"></script>
+        <script src="{{ asset('vendor/js/helpers.js') }}"></script>
         <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
         <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-        <script src="{{ asset('sneat-bootstrap-free/js/config.js') }}"></script>
+        <script src="{{ asset('js/config.js') }}"></script>
         {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
         @livewireStyles
     </head>
@@ -192,6 +192,10 @@ data-template="vertical-menu-template-free">
                     </div>
                     <!-- /Logo -->
 
+                    @if (session('x'))
+                            <div class="alert alert-danger text-center" role="alert"><strong>{{ session('x') }}</strong></div>
+                    @endif
+
                     <form id="formAuthentication" method="POST" class="mb-3" action="{{ route('login') }}">
                         @csrf
                         <div class="mb-3">
@@ -255,18 +259,18 @@ data-template="vertical-menu-template-free">
         <!-- Core JS -->
         <!-- build:js assets/vendor/js/core.js -->
 
-        <script src="{{ asset('sneat-bootstrap-free/vendor/libs/jquery/jquery.js') }}"></script>
-        <script src="{{ asset('sneat-bootstrap-free/vendor/libs/popper/popper.js') }}"></script>
-        <script src="{{ asset('sneat-bootstrap-free/vendor/js/bootstrap.js') }}"></script>
-        <script src="{{ asset('sneat-bootstrap-free/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-        <script src="{{ asset('sneat-bootstrap-free/vendor/js/menu.js') }}"></script>
+        <script src="{{ asset('vendor/libs/jquery/jquery.js') }}"></script>
+        <script src="{{ asset('vendor/libs/popper/popper.js') }}"></script>
+        <script src="{{ asset('vendor/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+        <script src="{{ asset('vendor/js/menu.js') }}"></script>
 
         <!-- endbuild -->
 
         <!-- Vendors JS -->
 
         <!-- Main JS -->
-        <script src="{{ asset('sneat-bootstrap-free/js/main.js') }}"></script>
+        <script src="{{ asset('js/main.js') }}"></script>
 
         <!-- Page JS -->
 

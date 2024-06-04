@@ -1,12 +1,11 @@
 <div class="col-xl" id="submission">
     <div class="card mb-3">
-        <h5 class="card-header">Ubah pengajuan
-        </h5>
+        <h5 class="card-header">Ubah Pengajuan</h5>
+        <hr class="mt-0 mb-0">
 
         <div class="card-body">
             <form wire:submit.prevent="update">
                 @csrf
-                <input type="hidden" wire:model.defer="submissionId">
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="basic-default-fullname">Nama</label>
@@ -14,7 +13,7 @@
 
                         @error('name')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <span>{{ $message }}</span>
                             </span>
                         @enderror
                     </div>
@@ -24,7 +23,7 @@
 
                         @error('jumlah')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <span>{{ $message }}</span>
                             </span>
                         @enderror
                     </div>
@@ -40,7 +39,7 @@
 
                         @error('jenis')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <span>{{ $message }}</span>
                             </span>
                         @enderror
                     </div>
@@ -50,7 +49,7 @@
 
                         @error('keterangan')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <span>{{ $message }}</span>
                             </span>
                         @enderror
                     </div>
@@ -61,7 +60,7 @@
                         <span class="spinner-border spinner-border-sm text-white mx-3" role="status"></span>
                     </button>
                     <button wire:loading.remove class="float-end btn btn-primary">
-                        <span>Ubah</span>
+                        <span>Simpan</span>
                     </button>
 
                     <button wire:loading wire:loading.attr="disabled" class="me-2 float-end btn btn-secondary">

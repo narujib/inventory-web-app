@@ -1,6 +1,7 @@
 <div class="col-xl">
     <div class="card mb-3">
-        <h5 class="card-header">Tambahkan jabatan</h5>
+        <h5 class="card-header">Tambahkan Jabatan</h5>
+        <hr class="my-0">
 
         <div class="card-body">
             <form wire:submit.prevent="store">
@@ -10,7 +11,7 @@
                     <input wire:model.defer="name" type="text" class="form-control  @error('name') is-invalid @enderror" placeholder="Nama">
                     @error('name')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <span>{{ $message }}</span>
                         </span>
                     @enderror
                     <div class="form-check mt-3">

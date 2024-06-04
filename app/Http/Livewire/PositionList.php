@@ -27,7 +27,9 @@ class PositionList extends Component
     public function render()
     {
         return view('livewire.position-list',[
-            'positions' => Position::orderBy('id','desc')->where('name','like','%'.$this->search.'%')->paginate($this->perPage)
+            'positions' => Position::orderBy('id','desc')
+                            ->where('name','like','%'.$this->search.'%')
+                            ->paginate($this->perPage)
         ]);
     }
 
@@ -45,7 +47,7 @@ class PositionList extends Component
     }
 
     public function destroy()
-    {    
+    {
         $position = Position::where('id', $this->positionId)->first();
         $userIds = User::pluck('position_id')->toArray();
         $xId = $position->id;
